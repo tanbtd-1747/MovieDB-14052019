@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  MovieDB
 //
 //  Created by tran.duc.tan on 5/14/19.
@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import RAMAnimatedTabBarController
 
-final class MainViewController: UIViewController {
+final class MainViewController: RAMAnimatedTabBarController {
+    deinit {
+        logDeinit()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        tabBar.do {
+            $0.backgroundImage = UIImage()
+            $0.shadowImage = UIImage()
+            $0.backgroundColor = .ghostWhite
+        }
     }
 }
 
