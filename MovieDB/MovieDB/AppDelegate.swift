@@ -22,9 +22,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func bindViewModel() {
-        guard let window = window else {
-            return
-        }
+        guard let window = window else { return }
         
         let viewModel: AppViewModel = assembler.resolve(window: window)
         let input = AppViewModel.Input(loadTrigger: Driver.just(()))
