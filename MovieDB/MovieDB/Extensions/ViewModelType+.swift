@@ -16,6 +16,6 @@ extension ViewModelType {
             .map { loading, isEmpty -> Bool in
                 if loading { return false }
                 return isEmpty
-        }
+            }
     }
 }
