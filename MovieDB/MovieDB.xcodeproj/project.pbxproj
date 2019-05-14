@@ -30,6 +30,7 @@
 		AED6F942228A6BEA0069C42B /* Optional+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6F941228A6BEA0069C42B /* Optional+.swift */; };
 		AED6F944228A6BFA0069C42B /* Observable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6F943228A6BFA0069C42B /* Observable+.swift */; };
 		AED6F946228A6E2F0069C42B /* UnitTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6F945228A6E2F0069C42B /* UnitTestViewController.swift */; };
+		AED6F948228A971E0069C42B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6F947228A971E0069C42B /* UIColor+.swift */; };
 		DADCBDC6647FBD5050CE2EFC /* Pods_MovieDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14740E5550335CB5D7ED357 /* Pods_MovieDBTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		AED6F941228A6BEA0069C42B /* Optional+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+.swift"; sourceTree = "<group>"; };
 		AED6F943228A6BFA0069C42B /* Observable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+.swift"; sourceTree = "<group>"; };
 		AED6F945228A6E2F0069C42B /* UnitTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestViewController.swift; sourceTree = "<group>"; };
+		AED6F947228A971E0069C42B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		D86742B355B0DA96D3459E31 /* Pods-MovieDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieDB.release.xcconfig"; path = "Target Support Files/Pods-MovieDB/Pods-MovieDB.release.xcconfig"; sourceTree = "<group>"; };
 		E95921B81FBE3D5FEF92C39E /* Pods_MovieDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F14740E5550335CB5D7ED357 /* Pods_MovieDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				AED6F93F228A6BD40069C42B /* ViewModelType+.swift */,
 				AED6F941228A6BEA0069C42B /* Optional+.swift */,
 				AED6F943228A6BFA0069C42B /* Observable+.swift */,
+				AED6F947228A971E0069C42B /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				AED6F92A228A601A0069C42B /* AppAssembler.swift in Sources */,
 				AED6F946228A6E2F0069C42B /* UnitTestViewController.swift in Sources */,
 				AED6F92C228A60AB0069C42B /* Assembler.swift in Sources */,
+				AED6F948228A971E0069C42B /* UIColor+.swift in Sources */,
 				AED6F91C228A5AA90069C42B /* AppViewModel.swift in Sources */,
 				AED6F8EA228A4C9B0069C42B /* AppDelegate.swift in Sources */,
 				AED6F938228A6B600069C42B /* UIViewController+.swift in Sources */,
