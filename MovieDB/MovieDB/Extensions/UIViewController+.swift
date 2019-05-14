@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import RAMAnimatedTabBarController
 
 extension UIViewController {
     func showError(message: String, completion: (() -> Void)? = nil) {
@@ -55,5 +56,13 @@ extension UIViewController {
             return tab.topMostViewController()
         }
         return self.presentedViewController?.topMostViewController()
+    }
+}
+
+extension UIViewController {
+    func makeTabBarItem(title: String, image: UIImage?, tag: Int) {
+        let tabBarItem = RAMAnimatedTabBarItem(title: title, image: image, tag: tag)
+        tabBarItem.animation = RAMBounceAnimation()
+        self.tabBarItem = tabBarItem
     }
 }

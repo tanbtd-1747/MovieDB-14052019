@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RAMAnimatedTabBarController
 
 protocol AppNavigatorType {
     func toMain()
@@ -17,9 +18,7 @@ struct AppNavigator: AppNavigatorType {
     unowned let window: UIWindow
     
     func toMain() {
-        let tabBarController = UITabBarController()
-        let viewController: MainViewController = assembler.resolve(tabBarController: tabBarController)
-        tabBarController.setViewControllers([viewController], animated: true)
-        window.rootViewController = tabBarController
+        let mainViewController: MainViewController = assembler.resolve()
+        window.rootViewController = mainViewController
     }
 }
