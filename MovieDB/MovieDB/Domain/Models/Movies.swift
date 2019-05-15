@@ -26,8 +26,8 @@ extension Movie {
         self.init(
             id: 0,
             title: "",
-            genres: [""],
-            genreIds: [0],
+            genres: [String](),
+            genreIds: [Int](),
             overview: "",
             posterPath: "",
             backdropPath: "",

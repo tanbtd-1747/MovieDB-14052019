@@ -9,6 +9,5 @@
 extension API {
     enum Urls {
         static let baseURL = "https://api.themoviedb.org/3"
-        
     }
 }
