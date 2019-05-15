@@ -8,7 +8,6 @@
 
 import UIKit
 import MBProgressHUD
-import RAMAnimatedTabBarController
 
 extension UIViewController {
     func showError(message: String, completion: (() -> Void)? = nil) {
