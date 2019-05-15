@@ -9,11 +9,11 @@
 import UIKit
 
 protocol FavoritesAssembler {
-    func resolve() -> FavoritesViewController
+    func resolve(navigationController: UINavigationController) -> FavoritesViewController
 }
 
 extension FavoritesAssembler where Self: DefaultAssembler {
-    func resolve() -> FavoritesViewController {
+    func resolve(navigationController: UINavigationController) -> FavoritesViewController {
         let viewController = FavoritesViewController.instantiate()
         return viewController
     }

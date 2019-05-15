@@ -9,11 +9,11 @@
 import UIKit
 
 protocol MoviesAssembler {
-    func resolve() -> MoviesViewController
+    func resolve(navigationController: UINavigationController) -> MoviesViewController
 }
 
 extension MoviesAssembler where Self: DefaultAssembler {
-    func resolve() -> MoviesViewController {
+    func resolve(navigationController: UINavigationController) -> MoviesViewController {
         let viewController = MoviesViewController.instantiate()
         return viewController
     }

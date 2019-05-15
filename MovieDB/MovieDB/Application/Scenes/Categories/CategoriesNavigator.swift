@@ -12,4 +12,5 @@ protocol CategoriesNavigatorType {
 
 struct CategoriesNavigator: CategoriesNavigatorType {
     unowned let assembler: Assembler
+    unowned let navigationController: UINavigationController
 }
