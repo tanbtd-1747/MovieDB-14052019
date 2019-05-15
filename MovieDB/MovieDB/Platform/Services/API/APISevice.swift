@@ -6,7 +6,6 @@
 //  Copyright © 2019 tranductanb. All rights reserved.
 //
 
-
 final class API: APIBase {
     static var shared = API()
     
