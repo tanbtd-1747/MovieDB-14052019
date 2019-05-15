@@ -24,9 +24,7 @@ extension MainAssembler where Self: DefaultAssembler {
         favoritesViewController.makeTabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "icon-favorite-1"), tag: 2)
         
         let mainViewController = MainViewController().then {
-            $0.viewControllers = [moviesViewController,
-                                                  categoriesViewController,
-                                                  favoritesViewController]
+            $0.viewControllers = [moviesViewController, categoriesViewController, favoritesViewController]
             $0.changeSelectedColor(.pastelRed, iconSelectedColor: .pastelRed)
         }
         

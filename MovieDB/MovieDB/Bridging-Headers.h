@@ -19,4 +19,6 @@
 @import Then;
 @import Reusable;
 
+@import RAMAnimatedTabBarController;
+
 #endif /* Bridging_Headers_h */

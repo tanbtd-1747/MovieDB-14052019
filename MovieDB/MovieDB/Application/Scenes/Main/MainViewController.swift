@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RAMAnimatedTabBarController
 
 final class MainViewController: RAMAnimatedTabBarController {
     deinit {
