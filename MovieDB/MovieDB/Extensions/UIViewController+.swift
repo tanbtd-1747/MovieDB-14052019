@@ -57,3 +57,11 @@ extension UIViewController {
         return self.presentedViewController?.topMostViewController()
     }
 }
+
+extension UIViewController {
+    func makeTabBarItem(title: String, image: UIImage?, tag: Int) {
+        let tabBarItem = RAMAnimatedTabBarItem(title: title, image: image, tag: tag)
+        tabBarItem.animation = RAMBounceAnimation()
+        self.tabBarItem = tabBarItem
+    }
+}

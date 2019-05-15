@@ -8,6 +8,9 @@
 
 protocol Assembler: class,
     MainAssembler,
+    MoviesAssembler,
+    CategoriesAssembler,
+    FavoritesAssembler,
     AppAssembler {
     
 }

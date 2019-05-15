@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  FavoritesViewController.swift
 //  MovieDB
 //
 //  Created by tran.duc.tan on 5/14/19.
@@ -8,23 +8,18 @@
 
 import UIKit
 
-final class MainViewController: RAMAnimatedTabBarController {
+final class FavoritesViewController: UIViewController {
     deinit {
         logDeinit()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tabBar.do {
-            $0.backgroundImage = UIImage()
-            $0.shadowImage = UIImage()
-            $0.backgroundColor = .ghostWhite
-        }
+        // Do any additional setup after loading the view.
     }
 }
 
 // MARK: - StotyboardSceneBased
-extension MainViewController: StoryboardSceneBased {
+extension FavoritesViewController: StoryboardSceneBased {
     static var sceneStoryboard = Storyboards.main
 }
