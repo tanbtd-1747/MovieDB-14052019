@@ -12,6 +12,6 @@ class APIOutput: APIOutputBase {  // swiftlint:disable:this final_class
     var message: String?
     
     override func mapping(map: Map) {
-        message <- map["message"]
+        message <- map["status_message"]
     }
 }
