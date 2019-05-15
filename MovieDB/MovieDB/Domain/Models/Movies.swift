@@ -17,7 +17,7 @@ struct Movie {
     var overview: String
     var posterPath: String
     var backdropPath: String
-    var releaseDate: String
+    var releaseDate: Date
     var voteAverage: Double
 }
 
@@ -26,12 +26,12 @@ extension Movie {
         self.init(
             id: 0,
             title: "",
-            genres: [String](),
-            genreIds: [Int](),
+            genres: [],
+            genreIds: [],
             overview: "",
             posterPath: "",
             backdropPath: "",
-            releaseDate: "",
+            releaseDate: Date(),
             voteAverage: 0
         )
     }
@@ -44,6 +44,7 @@ extension Movie: Mappable {
     }
     
     mutating func mapping(map: Map) {
+        let realeaseTransform = DateFormatterTransform(dateFormatter: Date.Formatter.realeaseDate.instance)
         id <- map["id"]
         title <- map["title"]
         genres <- map["genres"]
@@ -51,7 +52,7 @@ extension Movie: Mappable {
         overview <- map["overview"]
         posterPath <- map["poster_path"]
         backdropPath <- map["backdrop_path"]
-        releaseDate <- map["release_date"]
+        releaseDate <- (map["release_date"], realeaseTransform)
         voteAverage <- map["vote_average"]
     }
 }
