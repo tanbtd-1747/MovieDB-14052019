@@ -8,13 +8,4 @@
 
 enum Constant {
     static let categories = ["Popular", "Now Playing", "Upcoming"]
-    
-    static let appFontName = "Avenir-Book"
-    static let appSmallFontSize: CGFloat = 13
-    static let appMediumFontSize: CGFloat = 17
-    
-    static let categoriesMovieCollectionViewHorizontalSpacing: CGFloat = 20
-    static let categoriesMoviesCollectionViewVerticalSpacing: CGFloat = 20
-    static let categoriesMoviesCollectionViewHorizontalInset: CGFloat = 10
-    static let categoriesMoviesCollectionViewVerticalInset: CGFloat = 10
 }

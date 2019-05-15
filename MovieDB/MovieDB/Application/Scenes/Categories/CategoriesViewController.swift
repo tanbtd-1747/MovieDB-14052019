@@ -12,6 +12,8 @@ final class CategoriesViewController: UIViewController, BindableType {
     @IBOutlet weak var categoriesSegmentedControl: TTSegmentedControl!
     @IBOutlet weak var categoriesMoviesCollectionView: UICollectionView!
     
+    private let layoutOption = LayoutOption()
+    
     var viewModel: CategoriesViewModel!
     
     deinit {
@@ -25,17 +27,14 @@ final class CategoriesViewController: UIViewController, BindableType {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        hideNavigationBar()
         configCategories()
     }
     
     private func configSubviews() {
         categoriesSegmentedControl.do {
-            if let font = UIFont(name: Constant.appFontName, size: Constant.appSmallFontSize) {
-                $0.defaultTextFont = font
-            }
-            if let font = UIFont(name: Constant.appFontName, size: Constant.appMediumFontSize) {
-                $0.selectedTextFont = font
-            }
+            $0.defaultTextFont = UIFont.avenirBook(size: .smallFontSize)
+            $0.selectedTextFont = UIFont.avenirBook(size: .mediumFontSize)
             $0.allowChangeThumbWidth = false
         }
         
@@ -58,30 +57,43 @@ final class CategoriesViewController: UIViewController, BindableType {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
+    struct LayoutOption {
+        var topInset: CGFloat = 10
+        var bottomInset: CGFloat = 10
+        var leftInset: CGFloat = 10
+        var rightInset: CGFloat = 10
+        var sectionInsets: UIEdgeInsets {
+            return UIEdgeInsets(top: topInset,
+                                left: leftInset,
+                                bottom: bottomInset,
+                                right: rightInset)
+        }
+        var lineSpacing: CGFloat = 20
+        var itemSpacing: CGFloat = 20
+        var numColumns = 2
+        var ratio: CGFloat = 1.5
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: Constant.categoriesMoviesCollectionViewVerticalInset,
-                            left: Constant.categoriesMoviesCollectionViewHorizontalInset,
-                            bottom: Constant.categoriesMoviesCollectionViewVerticalInset,
-                            right: Constant.categoriesMoviesCollectionViewHorizontalInset)
+        return layoutOption.sectionInsets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return Constant.categoriesMovieCollectionViewHorizontalSpacing
+        return layoutOption.itemSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Constant.categoriesMoviesCollectionViewVerticalSpacing
+        return layoutOption.lineSpacing
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let numColumns = 2
-        
-        let width = (collectionView.bounds.width
-            - Constant.categoriesMovieCollectionViewHorizontalSpacing
-            - 2 * Constant.categoriesMoviesCollectionViewHorizontalInset) / CGFloat(numColumns)
-        let height = 1.5 * width
+        var width = collectionView.bounds.width
+        width -= CGFloat(layoutOption.numColumns - 1) * layoutOption.itemSpacing
+        width -= layoutOption.leftInset + layoutOption.rightInset
+        width /= CGFloat(layoutOption.numColumns)
+        let height = layoutOption.ratio * width
         
         return CGSize(width: width, height: height)
     }

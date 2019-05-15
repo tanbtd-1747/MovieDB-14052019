@@ -15,12 +15,20 @@ final class MainViewController: RAMAnimatedTabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        configSubviews()
+    }
+    
+    private func configSubviews() {
         tabBar.do {
             $0.backgroundImage = UIImage()
             $0.shadowImage = UIImage()
             $0.backgroundColor = .ghostWhite
         }
+        changeSelectedColor(.pastelRed, iconSelectedColor: .pastelRed)
     }
 }
 
