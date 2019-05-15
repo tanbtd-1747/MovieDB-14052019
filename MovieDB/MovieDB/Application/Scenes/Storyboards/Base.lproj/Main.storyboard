@@ -32,13 +32,76 @@
                     <view key="view" contentMode="scaleToFill" id="GHO-TF-BJV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORIES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34j-YH-66S">
+                                <rect key="frame" x="20" y="64" width="185.5" height="41"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htd-3r-xe0" customClass="TTSegmentedControl" customModule="TTSegmentedControl">
+                                <rect key="frame" x="20" y="115" width="374" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="TmK-or-ZA2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="defaultTextColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="thumbColor">
+                                        <color key="value" red="1" green="0.40784313729999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useGradient" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="containerBackgroundColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="padding">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hsf-as-NAa">
+                                <rect key="frame" x="20" y="175" width="374" height="677"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U2f-tn-fdD">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8nv-Ol-OhF" firstAttribute="trailing" secondItem="hsf-as-NAa" secondAttribute="trailing" constant="20" id="5Ja-Hp-2Sk"/>
+                            <constraint firstItem="8nv-Ol-OhF" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="34j-YH-66S" secondAttribute="trailing" symbolic="YES" id="Gbd-yR-4I5"/>
+                            <constraint firstItem="8nv-Ol-OhF" firstAttribute="bottom" secondItem="hsf-as-NAa" secondAttribute="bottom" constant="10" id="KeP-Ax-nIr"/>
+                            <constraint firstItem="htd-3r-xe0" firstAttribute="top" secondItem="34j-YH-66S" secondAttribute="bottom" constant="10" id="Uf8-82-LHn"/>
+                            <constraint firstItem="htd-3r-xe0" firstAttribute="leading" secondItem="8nv-Ol-OhF" secondAttribute="leading" constant="20" id="dO7-jg-cOJ"/>
+                            <constraint firstItem="34j-YH-66S" firstAttribute="leading" secondItem="8nv-Ol-OhF" secondAttribute="leading" constant="20" id="e3h-kD-4CO"/>
+                            <constraint firstItem="34j-YH-66S" firstAttribute="top" secondItem="8nv-Ol-OhF" secondAttribute="top" constant="20" id="mXc-vk-CEw"/>
+                            <constraint firstItem="8nv-Ol-OhF" firstAttribute="trailing" secondItem="htd-3r-xe0" secondAttribute="trailing" constant="20" id="pRn-Hl-dbh"/>
+                            <constraint firstItem="hsf-as-NAa" firstAttribute="leading" secondItem="8nv-Ol-OhF" secondAttribute="leading" constant="20" id="vkL-kf-9Wr"/>
+                            <constraint firstItem="hsf-as-NAa" firstAttribute="top" secondItem="htd-3r-xe0" secondAttribute="bottom" constant="10" id="ywF-ag-24c"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8nv-Ol-OhF"/>
                     </view>
+                    <connections>
+                        <outlet property="categoriesMoviesCollectionView" destination="hsf-as-NAa" id="Y5w-eo-Qje"/>
+                        <outlet property="categoriesSegmentedControl" destination="htd-3r-xe0" id="fML-Yq-EoC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FN1-ZJ-rqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="139"/>
+            <point key="canvasLocation" x="873.91304347826099" y="138.61607142857142"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="9Xt-HA-NfI">
