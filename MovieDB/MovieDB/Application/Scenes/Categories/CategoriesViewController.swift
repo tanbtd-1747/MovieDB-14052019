@@ -10,7 +10,7 @@ import UIKit
 
 final class CategoriesViewController: UIViewController, BindableType {
     @IBOutlet weak var categoriesSegmentedControl: TTSegmentedControl!
-    @IBOutlet weak var categoriesMoviesCollectionView: UICollectionView!
+    @IBOutlet weak var categoriesMoviesCollectionView: LoadMoreCollectionView!
     
     private let layoutOption = LayoutOption()
     
@@ -53,7 +53,46 @@ final class CategoriesViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
+        let input = CategoriesViewModel.Input(
+            loadTrigger: Driver.just(()),
+            reloadTrigger: categoriesMoviesCollectionView.refreshTrigger,
+            loadMoreTrigger: categoriesMoviesCollectionView.loadMoreTrigger
+        )
         
+        let output = viewModel.transform(input)
+        
+        output.error
+            .drive(rx.error)
+            .disposed(by: rx.disposeBag)
+        output.loading
+            .drive(rx.isLoading)
+            .disposed(by: rx.disposeBag)
+        output.refreshing
+            .drive(categoriesMoviesCollectionView.refreshing)
+            .disposed(by: rx.disposeBag)
+        output.loadingMore
+            .drive(categoriesMoviesCollectionView.loadingMore)
+            .disposed(by: rx.disposeBag)
+        output.fetchItems
+            .drive()
+            .disposed(by: rx.disposeBag)
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<Section<Movie>>(
+            configureCell: { _, collectionView, indexPath, movie in
+                let cell = collectionView.dequeueReusableCell(for: indexPath,
+                                                              cellType: CategoriesMovieCollectionViewCell.self)
+                    .then {
+                        $0.bindModel(CategoriesMovieModel(movie: movie))
+                    }
+                return cell
+            })
+        
+        output.moviesList
+            .map { movies in
+                return [Section<Movie>(items: movies)]
+            }
+            .drive(categoriesMoviesCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class CategoriesMovieCollectionViewCell: UICollectionViewCell, NibReusable {
     @IBOutlet weak var shadowView: UIView!
@@ -24,5 +25,20 @@ final class CategoriesMovieCollectionViewCell: UICollectionViewCell, NibReusable
     private func configSubviews() {
         shadowView.makeRoundedAndShadowed()
         containerView.makeRounded()
+    }
+    
+    func bindModel(_ model: CategoriesMovieModel?) {
+        if let model = model {
+            movieImageView.sd_setImage(with: model.posterURL, completed: nil)
+            movieNameLabel.text = model.title
+            movieYearLabel.text = model.year
+            movieVoteLabel.text = model.vote
+            movieVoteLabel.textColor = model.voteTextColor
+        } else {
+            movieImageView.image = nil
+            movieNameLabel.text = ""
+            movieYearLabel.text = ""
+            movieVoteLabel.text = ""
+        }
     }
 }

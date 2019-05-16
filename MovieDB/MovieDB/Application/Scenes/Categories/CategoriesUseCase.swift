@@ -7,9 +7,18 @@
 //
 
 protocol CategoriesUseCaseType {
-    
+    func getMoviesList() -> Observable<PagingInfo<Movie>>
+    func loadMoreMoviesList(page: Int) -> Observable<PagingInfo<Movie>>
 }
 
 struct CategoriesUseCase: CategoriesUseCaseType {
+    let repository: MovieRepositoryType
     
+    func getMoviesList() -> Observable<PagingInfo<Movie>> {
+        return loadMoreMoviesList(page: 1)
+    }
+    
+    func loadMoreMoviesList(page: Int) -> Observable<PagingInfo<Movie>> {
+        return repository.getMoviesList(page: page)
+    }
 }
