@@ -33,6 +33,6 @@ extension CategoriesAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> CategoriesUseCaseType {
-        return CategoriesUseCase()
+        return CategoriesUseCase(repository: resolve())
     }
 }

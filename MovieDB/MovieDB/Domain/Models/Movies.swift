@@ -37,6 +37,8 @@ extension Movie {
     }
 }
 
+extension Movie: Then { }
+
 extension Movie: Mappable {
     
     init?(map: Map) {
@@ -44,7 +46,7 @@ extension Movie: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        let realeaseTransform = DateFormatterTransform(dateFormatter: Date.Formatter.realeaseDate.instance)
+        let realeaseTransform = DateFormatterTransform(dateFormatter: Date.Formatter.releaseDate.instance)
         id <- map["id"]
         title <- map["title"]
         genres <- map["genres"]

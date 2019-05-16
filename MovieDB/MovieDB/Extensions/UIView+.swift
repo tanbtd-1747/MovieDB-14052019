@@ -24,10 +24,10 @@ extension UIView {
     }
     
     func makeRoundedAndShadowed(cornerRadius: CGFloat = 6,
-                                shadowColor: UIColor = .lightGray,
-                                shadowRadius: CGFloat = 6,
+                                shadowColor: UIColor = .black,
+                                shadowRadius: CGFloat = 3,
                                 shadowOffset: CGSize = CGSize(width: 0, height: 1),
-                                shadowOpacity: Float = 0.1) {
+                                shadowOpacity: Float = 0.4) {
         makeRounded(radius: cornerRadius)
         makeShadowed(color: shadowColor,
                      radius: shadowRadius,

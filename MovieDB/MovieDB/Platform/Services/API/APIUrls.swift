@@ -8,6 +8,9 @@
 
 extension API {
     enum Urls {
-        static let baseURL = "https://api.themoviedb.org/3"
+        private static let baseURL = "https://api.themoviedb.org/3"
+        static let posterUrl = "http://image.tmdb.org/t/p/w185/"
+        
+        static let moviesListURL = baseURL + "/movie/popular"
     }
 }
