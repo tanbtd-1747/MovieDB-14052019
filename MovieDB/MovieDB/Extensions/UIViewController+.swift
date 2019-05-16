@@ -64,4 +64,8 @@ extension UIViewController {
         tabBarItem.animation = RAMBounceAnimation()
         self.tabBarItem = tabBarItem
     }
+    
+    func hideNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
+    }
 }

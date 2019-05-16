@@ -20,5 +20,6 @@
 @import Reusable;
 
 @import RAMAnimatedTabBarController;
+@import TTSegmentedControl;
 
 #endif /* Bridging_Headers_h */
