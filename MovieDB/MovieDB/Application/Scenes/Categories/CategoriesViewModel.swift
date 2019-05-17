@@ -28,6 +28,7 @@ extension CategoriesViewModel: ViewModelType {
         let moviesList: Driver<[Movie]>
         let selectedMovie: Driver<Void>
         let scrollToTop: Driver<Void>
+        let isEmptyData: Driver<Bool>
     }
     
     func transform(_ input: CategoriesViewModel.Input) -> CategoriesViewModel.Output {
@@ -58,6 +59,10 @@ extension CategoriesViewModel: ViewModelType {
             })
             .mapToVoid()
         
+        let isEmptyData = checkIfDataIsEmpty(fetchItemsTrigger: fetchItems,
+                                             loadTrigger: Driver.merge(loading, refreshing),
+                                             items: moviesList)
+        
         return Output(
             error: loadError,
             loading: loading,
@@ -66,7 +71,8 @@ extension CategoriesViewModel: ViewModelType {
             fetchItems: fetchItems,
             moviesList: moviesList,
             selectedMovie: selectedMovie,
-            scrollToTop: input.loadTrigger.mapToVoid()
+            scrollToTop: input.loadTrigger.mapToVoid(),
+            isEmptyData: isEmptyData
         )
     }
 }

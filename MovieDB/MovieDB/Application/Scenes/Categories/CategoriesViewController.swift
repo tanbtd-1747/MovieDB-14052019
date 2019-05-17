@@ -95,6 +95,9 @@ final class CategoriesViewController: UIViewController, BindableType {
                 self.categoriesMoviesCollectionView.setContentOffset(.zero, animated: true)
             })
             .disposed(by: rx.disposeBag)
+        output.isEmptyData
+            .drive(categoriesMoviesCollectionView.rx.isEmptyData)
+            .disposed(by: rx.disposeBag)
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<Section<Movie>>(
             configureCell: { _, collectionView, indexPath, movie in
