@@ -7,5 +7,6 @@
 //
 
 enum Constant {
-    static let categories = ["Popular", "Now Playing", "Upcoming"]
+    static let categories: [CategoryType] = [.popular, .nowPlaying, .upcoming]
+    static let categoryTitles = ["Popular", "Now Playing", "Upcoming"]
 }

@@ -29,11 +29,14 @@ final class CategoriesMovieCollectionViewCell: UICollectionViewCell, NibReusable
     
     func bindModel(_ model: CategoriesMovieModel?) {
         if let model = model {
-            movieImageView.sd_setImage(with: model.posterURL, completed: nil)
-            movieNameLabel.text = model.title
-            movieYearLabel.text = model.year
-            movieVoteLabel.text = model.vote
-            movieVoteLabel.textColor = model.voteTextColor
+            model.do {
+                movieImageView.sd_setImage(with: $0.posterURL, completed: nil)
+                movieNameLabel.text = $0.title
+                movieYearLabel.text = $0.year
+                movieVoteLabel.isHidden = $0.isVoteHidden
+                movieVoteLabel.text = $0.vote
+                movieVoteLabel.textColor = $0.voteTextColor
+            }
         } else {
             movieImageView.image = nil
             movieNameLabel.text = ""

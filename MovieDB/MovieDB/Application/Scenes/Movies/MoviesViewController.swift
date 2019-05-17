@@ -48,10 +48,16 @@ final class MoviesViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
+        let loadTrigger = Driver<CategoryType>.just(.upcoming)
+        let reloadTrigger = collectionView.refreshTrigger
+            .withLatestFrom(loadTrigger)
+        let loadMoreTrigger = collectionView.loadMoreTrigger
+            .withLatestFrom(loadTrigger)
+        
         let input = MoviesViewModel.Input(
-            loadTrigger: Driver.just(()),
-            reloadTrigger: collectionView.refreshTrigger,
-            loadMoreTrigger: collectionView.loadMoreTrigger,
+            loadTrigger: loadTrigger,
+            reloadTrigger: reloadTrigger,
+            loadMoreTrigger: loadMoreTrigger,
             selectRepoTrigger: collectionView.rx.itemSelected.asDriver()
         )
         
@@ -102,7 +108,7 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 10 , height: view.frame.width / 2)
+        return CGSize(width: view.frame.width - 10, height: view.frame.width / 2)
     }
     
     func collectionView(_ collectionView: UICollectionView,

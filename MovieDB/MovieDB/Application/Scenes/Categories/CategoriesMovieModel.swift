@@ -6,7 +6,7 @@
 //  Copyright © 2019 tranductanb. All rights reserved.
 //
 
-struct CategoriesMovieModel {
+struct CategoriesMovieModel: Then {
     let movie: Movie
     
     var title: String {
@@ -32,6 +32,10 @@ struct CategoriesMovieModel {
         default:
             return .white
         }
+    }
+    
+    var isVoteHidden: Bool {
+        return movie.voteAverage > 0.0 ? false : true
     }
     
     var posterURL: URL? {

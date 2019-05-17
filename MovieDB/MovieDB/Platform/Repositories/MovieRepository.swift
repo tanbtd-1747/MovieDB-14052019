@@ -7,12 +7,12 @@
 //
 
 protocol MovieRepositoryType {
-    func getMoviesList(page: Int) -> Observable<PagingInfo<Movie>>
+    func getMoviesList(category: CategoryType, page: Int) -> Observable<PagingInfo<Movie>>
 }
 
 final class MovieRepository: MovieRepositoryType {
-    func getMoviesList(page: Int) -> Observable<PagingInfo<Movie>> {
-        let input = API.GetMoviesListInput(page: page)
+    func getMoviesList(category: CategoryType, page: Int) -> Observable<PagingInfo<Movie>> {
+        let input = API.GetMoviesListInput(category: category, page: page)
         return API.shared.getMoviesList(input)
             .map { output in
                 guard let movies = output.movies else {

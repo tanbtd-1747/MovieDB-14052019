@@ -8,15 +8,15 @@
 
 struct MoviesViewModel {
     let navigator: MoviesNavigatorType
-    let useCase:  MoviesUseCaseType
+    let useCase: MoviesUseCaseType
 }
 
 // MARK: - ViewModelType
 extension MoviesViewModel: ViewModelType {
     struct Input {
-        let loadTrigger: Driver<Void>
-        let reloadTrigger: Driver<Void>
-        let loadMoreTrigger: Driver<Void>
+        let loadTrigger: Driver<CategoryType>
+        let reloadTrigger: Driver<CategoryType>
+        let loadMoreTrigger: Driver<CategoryType>
         let selectRepoTrigger: Driver<IndexPath>
     }
     
@@ -32,7 +32,7 @@ extension MoviesViewModel: ViewModelType {
     }
     
     func transform(_ input: Input) -> Output {
-        let loadMoreOutput = setupLoadMorePaging(
+        let loadMoreOutput = setupLoadMorePagingWithParam(
             loadTrigger: input.loadTrigger,
             getItems: useCase.getMoviesList,
             refreshTrigger: input.reloadTrigger,
@@ -53,7 +53,7 @@ extension MoviesViewModel: ViewModelType {
             .map { indexPath, repoList in
                 return repoList[indexPath.row]
             }
-            .do(onNext: { repo in
+            .do(onNext: { _ in
                 //self.navigator.toRepoDetail(repo: repo)
             })
             .mapToVoid()

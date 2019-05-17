@@ -45,7 +45,7 @@ final class CategoriesViewController: UIViewController, BindableType {
     }
     
     private func configCategories() {
-        Constant.categories
+        Constant.categoryTitles
             .enumerated()
             .forEach { (index, title) in
                 categoriesSegmentedControl.changeTitle(title, atIndex: index)
@@ -53,10 +53,21 @@ final class CategoriesViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
+        let loadTrigger = categoriesSegmentedControl.rx.selectedSegmentIndex
+            .map {
+                Constant.categories[$0]
+            }
+            .asDriverOnErrorJustComplete()
+        let reloadTrigger = categoriesMoviesCollectionView.refreshTrigger
+            .withLatestFrom(loadTrigger)
+        let loadMoreTrigger = categoriesMoviesCollectionView.loadMoreTrigger
+            .withLatestFrom(loadTrigger)
+        
         let input = CategoriesViewModel.Input(
-            loadTrigger: Driver.just(()),
-            reloadTrigger: categoriesMoviesCollectionView.refreshTrigger,
-            loadMoreTrigger: categoriesMoviesCollectionView.loadMoreTrigger
+            loadTrigger: loadTrigger,
+            reloadTrigger: reloadTrigger,
+            loadMoreTrigger: loadMoreTrigger,
+            selectMovieTrigger: categoriesMoviesCollectionView.rx.itemSelected.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -75,6 +86,14 @@ final class CategoriesViewController: UIViewController, BindableType {
             .disposed(by: rx.disposeBag)
         output.fetchItems
             .drive()
+            .disposed(by: rx.disposeBag)
+        output.selectedMovie
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.scrollToTop
+            .drive(onNext: { [unowned self] in
+                self.categoriesMoviesCollectionView.setContentOffset(.zero, animated: true)
+            })
             .disposed(by: rx.disposeBag)
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<Section<Movie>>(

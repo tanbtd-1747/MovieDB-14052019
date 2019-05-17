@@ -21,9 +21,9 @@ final class CategoriesViewModelTests: XCTestCase {
     
     private var disposeBag: DisposeBag!
     
-    private let loadTrigger = PublishSubject<Void>()
-    private let reloadTrigger = PublishSubject<Void>()
-    private let loadMoreTrigger = PublishSubject<Void>()
+    private let loadTrigger = PublishSubject<CategoryType>()
+    private let reloadTrigger = PublishSubject<CategoryType>()
+    private let loadMoreTrigger = PublishSubject<CategoryType>()
 
     override func setUp() {
         super.setUp()
@@ -48,7 +48,7 @@ final class CategoriesViewModelTests: XCTestCase {
     }
     
     func test_loadTriggerInvoked_getMoviesList() {
-        loadTrigger.onNext(())
+        loadTrigger.onNext(.popular)
         let moviesList = try? output.moviesList.toBlocking(timeout: 1).first()
         
         XCTAssert(useCase.getMoviesListCalled)
@@ -59,7 +59,7 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        loadTrigger.onNext(())
+        loadTrigger.onNext(.popular)
         getMoviesListReturnValue.onError(TestError())
         let error = try? output.error.toBlocking(timeout: 1).first()
         
@@ -68,7 +68,7 @@ final class CategoriesViewModelTests: XCTestCase {
     }
     
     func test_reloadTriggerInvoked_getMoviesList() {
-        reloadTrigger.onNext(())
+        reloadTrigger.onNext(.popular)
         let moviesList = try? output.moviesList.toBlocking(timeout: 1).first()
         
         XCTAssert(useCase.getMoviesListCalled)
@@ -79,7 +79,7 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        reloadTrigger.onNext(())
+        reloadTrigger.onNext(.popular)
         getMoviesListReturnValue.onError(TestError())
         let error = try? output.error.toBlocking(timeout: 1).first()
         
@@ -91,9 +91,9 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        loadTrigger.onNext(())
+        loadTrigger.onNext(.popular)
         useCase.getMoviesListCalled = false
-        reloadTrigger.onNext(())
+        reloadTrigger.onNext(.popular)
         
         XCTAssertFalse(useCase.getMoviesListCalled)
     }
@@ -102,16 +102,16 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        reloadTrigger.onNext(())
+        reloadTrigger.onNext(.popular)
         useCase.getMoviesListCalled = false
-        reloadTrigger.onNext(())
+        reloadTrigger.onNext(.popular)
         
         XCTAssertFalse(useCase.getMoviesListCalled)
     }
     
     func test_loadMoreTriggerInvoked_loadMoreMoviesList() {
-        loadTrigger.onNext(())
-        loadMoreTrigger.onNext(())
+        loadTrigger.onNext(.popular)
+        loadMoreTrigger.onNext(.popular)
         let moviesList = try? output.moviesList.toBlocking(timeout: 1).first()
         
         XCTAssert(useCase.loadMoreMoviesListCalled)
@@ -122,8 +122,8 @@ final class CategoriesViewModelTests: XCTestCase {
         let loadMoreMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.loadMoreMoviesListReturnValue = loadMoreMoviesListReturnValue
         
-        loadTrigger.onNext(())
-        loadMoreTrigger.onNext(())
+        loadTrigger.onNext(.popular)
+        loadMoreTrigger.onNext(.popular)
         loadMoreMoviesListReturnValue.onError(TestError())
         let error = try? output.error.toBlocking(timeout: 1).first()
         
@@ -135,9 +135,9 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        loadTrigger.onNext(())
+        loadTrigger.onNext(.popular)
         useCase.getMoviesListCalled = false
-        loadMoreTrigger.onNext(())
+        loadMoreTrigger.onNext(.popular)
         
         XCTAssertFalse(useCase.loadMoreMoviesListCalled)
     }
@@ -146,9 +146,9 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        reloadTrigger.onNext(())
+        reloadTrigger.onNext(.popular)
         useCase.getMoviesListCalled = false
-        loadMoreTrigger.onNext(())
+        loadMoreTrigger.onNext(.popular)
         
         XCTAssertFalse(useCase.loadMoreMoviesListCalled)
     }
@@ -157,9 +157,9 @@ final class CategoriesViewModelTests: XCTestCase {
         let getMoviesListReturnValue = PublishSubject<PagingInfo<Movie>>()
         useCase.getMoviesListReturnValue = getMoviesListReturnValue
         
-        loadMoreTrigger.onNext(())
+        loadMoreTrigger.onNext(.popular)
         useCase.getMoviesListCalled = false
-        loadMoreTrigger.onNext(())
+        loadMoreTrigger.onNext(.popular)
         
         XCTAssertFalse(useCase.loadMoreMoviesListCalled)
     }

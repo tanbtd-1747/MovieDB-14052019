@@ -7,19 +7,19 @@
 //
 
 protocol MoviesUseCaseType {
-    func getMoviesList() -> Observable<PagingInfo<Movie>>
-    func loadMoreMoviesList(page: Int) -> Observable<PagingInfo<Movie>>
+    func getMoviesList(category: CategoryType) -> Observable<PagingInfo<Movie>>
+    func loadMoreMoviesList(category: CategoryType, page: Int) -> Observable<PagingInfo<Movie>>
 }
 
 struct MoviesUseCase: MoviesUseCaseType {
     let repository: MovieRepositoryType
     
-    func getMoviesList() -> Observable<PagingInfo<Movie>> {
-        return loadMoreMoviesList(page: 1)
+    func getMoviesList(category: CategoryType) -> Observable<PagingInfo<Movie>> {
+        return loadMoreMoviesList(category: category, page: 1)
     }
     
-    func loadMoreMoviesList(page: Int) -> Observable<PagingInfo<Movie>> {
-        return repository.getMoviesList(page: page)
+    func loadMoreMoviesList(category: CategoryType, page: Int) -> Observable<PagingInfo<Movie>> {
+        return repository.getMoviesList(category: category, page: page)
     }
 }
 
