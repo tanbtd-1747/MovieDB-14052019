@@ -39,4 +39,8 @@ extension UIColor {
     @nonobjc class var pastelRed: UIColor {
         return UIColor(hex: 0xFF686B)
     }
+    
+    @nonobjc class var burlywood: UIColor {
+        return UIColor(hex: 0xDCCB84)
+    }
 }

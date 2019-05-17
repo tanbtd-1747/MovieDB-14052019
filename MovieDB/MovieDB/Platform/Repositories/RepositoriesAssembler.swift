@@ -6,16 +6,12 @@
 //  Copyright © 2019 tranductanb. All rights reserved.
 //
 
-import UIKit
-
 protocol RepositoriesAssembler {
     func resolve() -> MovieRepositoryType
-
 }
 
 extension RepositoriesAssembler where Self: DefaultAssembler {
     func resolve() -> MovieRepositoryType {
         return MovieRepository()
     }
-    
 }

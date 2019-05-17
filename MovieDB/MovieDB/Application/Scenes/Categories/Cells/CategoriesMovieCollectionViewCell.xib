@@ -25,7 +25,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ob-yR-SGn">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cpA-12-kWf">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cpA-12-kWf">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
                                     </imageView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubj-En-5aw">
@@ -35,17 +35,17 @@
                                                 <rect key="frame" x="5" y="5" width="130" height="42.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="g1D-5M-NV1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="42.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="42.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="xxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDJ-Ao-Haq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="99" height="24.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXXXXXXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DS-Ml-MjL">
-                                                                <rect key="frame" x="0.0" y="24.5" width="99" height="18"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXXXXXXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1DS-Ml-MjL">
+                                                                <rect key="frame" x="0.0" y="22" width="100.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -59,9 +59,9 @@
                                                             <constraint firstItem="RDJ-Ao-Haq" firstAttribute="leading" secondItem="g1D-5M-NV1" secondAttribute="leading" id="ci8-AL-Ks8"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="xx%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sa4-oU-4u3">
-                                                        <rect key="frame" x="104" y="0.0" width="26" height="42.5"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="xx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sa4-oU-4u3">
+                                                        <rect key="frame" x="105.5" y="0.0" width="24.5" height="42.5"/>
+                                                        <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="20"/>
                                                         <color key="textColor" red="0.51764705879999995" green="0.86274509799999999" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -93,13 +93,13 @@
                                     <constraint firstAttribute="trailing" secondItem="ubj-En-5aw" secondAttribute="trailing" id="Wa8-kW-owJ"/>
                                     <constraint firstItem="cpA-12-kWf" firstAttribute="leading" secondItem="2ob-yR-SGn" secondAttribute="leading" id="bT8-1S-ksZ"/>
                                     <constraint firstItem="cpA-12-kWf" firstAttribute="top" secondItem="2ob-yR-SGn" secondAttribute="top" id="gq1-48-vTF"/>
-                                    <constraint firstItem="ubj-En-5aw" firstAttribute="height" secondItem="cpA-12-kWf" secondAttribute="height" multiplier="1/4" id="sJR-4m-hoM"/>
+                                    <constraint firstItem="ubj-En-5aw" firstAttribute="height" secondItem="2ob-yR-SGn" secondAttribute="height" multiplier="1/4" id="sJR-4m-hoM"/>
                                     <constraint firstAttribute="bottom" secondItem="ubj-En-5aw" secondAttribute="bottom" id="tkD-i0-Def"/>
                                     <constraint firstAttribute="bottom" secondItem="cpA-12-kWf" secondAttribute="bottom" id="uzN-bt-84y"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2ob-yR-SGn" firstAttribute="leading" secondItem="mIy-SB-K91" secondAttribute="leading" id="MDX-Vt-q7w"/>
                             <constraint firstAttribute="trailing" secondItem="2ob-yR-SGn" secondAttribute="trailing" id="QNp-J1-nXi"/>

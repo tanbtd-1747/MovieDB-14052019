@@ -20,11 +20,11 @@ extension Calendar {
 
 extension Date {
     enum Formatter {
-        case realeaseDate
+        case releaseDate
         
         var format: String {
             switch self {
-            case .realeaseDate:
+            case .releaseDate:
                 return "yyyy-mm-dd"
             }
         }
@@ -52,8 +52,8 @@ extension DateFormatter {
 }
 
 extension Date {
-    var realeaseDateString: String {
-        return self.toString(format: Formatter.realeaseDate)
+    var releaseDateString: String {
+        return self.toString(format: Formatter.releaseDate)
     }
 
 }
