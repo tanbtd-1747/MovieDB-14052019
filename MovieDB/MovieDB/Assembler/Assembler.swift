@@ -11,6 +11,7 @@ protocol Assembler: class,
     MoviesAssembler,
     CategoriesAssembler,
     FavoritesAssembler,
+    RepositoriesAssembler,
     AppAssembler {
     
 }
