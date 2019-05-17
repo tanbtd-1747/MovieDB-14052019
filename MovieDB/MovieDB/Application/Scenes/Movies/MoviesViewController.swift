@@ -21,7 +21,7 @@ final class MoviesViewController: UIViewController, BindableType {
         var lineSpacing: CGFloat = 8
         var itemsPerRow: Int = 2
         var sectionInsets = UIEdgeInsets(
-            top: -40.0,
+            top: 10.0,
             left: 10.0,
             bottom: 10.0,
             right: 10.0
@@ -40,7 +40,6 @@ final class MoviesViewController: UIViewController, BindableType {
     private func cofigView() {
         collectionView.do {
             $0.register(cellType: MoviesCollectionViewCell.self)
-           // $0.alwaysBounceHorizontal = true
         }
         
         collectionView.rx
@@ -51,7 +50,6 @@ final class MoviesViewController: UIViewController, BindableType {
     func bindViewModel() {
         let input = MoviesViewModel.Input(
             loadTrigger: Driver.just(()),
-
             reloadTrigger: collectionView.refreshTrigger,
             loadMoreTrigger: collectionView.loadMoreTrigger,
             selectRepoTrigger: collectionView.rx.itemSelected.asDriver()
@@ -64,7 +62,7 @@ final class MoviesViewController: UIViewController, BindableType {
                 return collectionView.dequeueReusableCell(for: IndexPath(row: index, section: 0),
                                                           cellType: MoviesCollectionViewCell.self)
                     .then {
-                        $0.bindViewModel(result)
+                        $0.bindViewModel(MovieViewModel(movie: result))
                     }
             }
             .disposed(by: rx.disposeBag)
@@ -91,8 +89,6 @@ final class MoviesViewController: UIViewController, BindableType {
             .drive()
             .disposed(by: rx.disposeBag)
     }
-    
-    
 }
 
 // MARK: - StotyboardSceneBased
@@ -108,7 +104,6 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDelega
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width - 10 , height: view.frame.width / 2)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

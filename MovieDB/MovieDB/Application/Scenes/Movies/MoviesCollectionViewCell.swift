@@ -30,7 +30,7 @@ final class MoviesCollectionViewCell: UICollectionViewCell, NibReusable {
         contentViewBig.layer.cornerRadius = 5.0
     }
     
-    func bindViewModel(_ viewModel: Movie?) {
+    func bindViewModel(_ viewModel: MovieViewModel?) {
         if let viewModel = viewModel {
             textLabel.text = viewModel.title
             posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath), completed: nil)
@@ -39,6 +39,7 @@ final class MoviesCollectionViewCell: UICollectionViewCell, NibReusable {
         } else {
             textLabel.text = ""
             posterImageView.image = nil
+            backdropImageView.image = nil
         }
     }
 
