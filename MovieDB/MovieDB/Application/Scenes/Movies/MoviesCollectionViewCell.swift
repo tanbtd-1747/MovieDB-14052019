@@ -33,8 +33,10 @@ final class MoviesCollectionViewCell: UICollectionViewCell, NibReusable {
     func bindViewModel(_ viewModel: MovieViewModel?) {
         if let viewModel = viewModel {
             textLabel.text = viewModel.title
-            posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath), completed: nil)
-            backdropImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.posterPath), completed: nil)
+            posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath),
+                                         completed: nil)
+            backdropImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.posterPath),
+                                           completed: nil)
             
         } else {
             textLabel.text = ""

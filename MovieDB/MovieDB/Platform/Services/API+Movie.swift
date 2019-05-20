@@ -17,13 +17,13 @@ extension API {
 // MARK: - GetMoviesList
 extension API {
     final class GetMoviesListInput: APIInput {
-        init(page: Int) {
+        init(category: CategoryType, page: Int) {
             let params: JSONDictionary = [
                 "api_key": Keys.key,
                 "language": "en-US",
                 "page": page
             ]
-            super.init(urlString: API.Urls.moviesListURL,
+            super.init(urlString: API.Urls.moviesListURL + category.rawValue,
                        parameters: params,
                        requestType: .get,
                        requireAccessToken: false)

@@ -18,7 +18,7 @@ final class CategoriesUseCaseMock: CategoriesUseCaseType {
         return Observable.just(page)
     }()
     
-    func getMoviesList() -> Observable<PagingInfo<Movie>> {
+    func getMoviesList(category: CategoryType) -> Observable<PagingInfo<Movie>> {
         getMoviesListCalled = true
         return getMoviesListReturnValue
     }
@@ -31,7 +31,7 @@ final class CategoriesUseCaseMock: CategoriesUseCaseType {
         return Observable.just(page)
     }()
     
-    func loadMoreMoviesList(page: Int) -> Observable<PagingInfo<Movie>> {
+    func loadMoreMoviesList(category: CategoryType, page: Int) -> Observable<PagingInfo<Movie>> {
         loadMoreMoviesListCalled = true
         return loadMoreMoviesListReturnValue
     }
