@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CastCrewCollectionViewCell" id="gTV-IL-0wX" customClass="CastCrewCollectionViewCell" customModule="MovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="96" height="128"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="96" height="128"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6so-hu-LCx">
+                        <rect key="frame" x="5" y="5" width="86" height="102.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crew Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vi9-Yo-aHB">
+                        <rect key="frame" x="0.0" y="107.5" width="96" height="20.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="6so-hu-LCx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="2SQ-Wa-y6t"/>
+                <constraint firstAttribute="bottom" secondItem="vi9-Yo-aHB" secondAttribute="bottom" id="I7J-bG-jgl"/>
+                <constraint firstItem="6so-hu-LCx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="JAD-6S-inN"/>
+                <constraint firstItem="vi9-Yo-aHB" firstAttribute="top" secondItem="6so-hu-LCx" secondAttribute="bottom" id="MuQ-a3-9fc"/>
+                <constraint firstAttribute="trailing" secondItem="vi9-Yo-aHB" secondAttribute="trailing" id="aEo-8B-JSD"/>
+                <constraint firstAttribute="trailing" secondItem="6so-hu-LCx" secondAttribute="trailing" constant="5" id="ld9-TS-YGB"/>
+                <constraint firstItem="6so-hu-LCx" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="4/5" id="mOM-6w-4H4"/>
+                <constraint firstItem="vi9-Yo-aHB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="o8D-jW-w4I"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="crewImageView" destination="6so-hu-LCx" id="9LG-eW-nbp"/>
+                <outlet property="crewName" destination="vi9-Yo-aHB" id="5ha-ZS-LdE"/>
+            </connections>
+            <point key="canvasLocation" x="150.72463768115944" y="34.821428571428569"/>
+        </collectionViewCell>
+    </objects>
+</document>
