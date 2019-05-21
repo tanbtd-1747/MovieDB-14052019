@@ -15,7 +15,7 @@ struct CategoriesNavigator: CategoriesNavigatorType {
     unowned let navigationController: UINavigationController
     
     func toMovieDetail() {
-        let viewController: MovieDetailViewController = assembler.resolve()
+        let viewController: MovieDetailViewController = assembler.resolve(navigationController: navigationController)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

@@ -12,6 +12,9 @@ protocol Assembler: class,
     CategoriesAssembler,
     FavoritesAssembler,
     MovieDetailAssembler,
+    MovieDetailReviewsAssembler,
+    MovieDetailOverviewAssembler,
+    CastCrewAssembler,
     RepositoriesAssembler,
     AppAssembler {
     

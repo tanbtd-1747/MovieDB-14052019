@@ -144,7 +144,7 @@
                                 </subviews>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GP-PP-tEK">
-                                <rect key="frame" x="0.0" y="506.5" width="414" height="539.5"/>
+                                <rect key="frame" x="0.0" y="506.5" width="414" height="559.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCq-aJ-NTl" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="477"/>
@@ -285,7 +285,7 @@
                             <constraint firstItem="EvC-eB-JEl" firstAttribute="top" secondItem="nvK-Le-llx" secondAttribute="bottom" constant="10" id="vJd-vS-dis"/>
                             <constraint firstItem="Rle-Fg-9Ni" firstAttribute="trailing" secondItem="EvC-eB-JEl" secondAttribute="trailing" constant="20" id="w0L-cu-0qF"/>
                             <constraint firstItem="kBH-Kj-Tfw" firstAttribute="centerX" secondItem="nvK-Le-llx" secondAttribute="centerX" id="wV4-5z-vdK"/>
-                            <constraint firstItem="Rle-Fg-9Ni" firstAttribute="bottom" secondItem="3GP-PP-tEK" secondAttribute="bottom" constant="20" id="yl1-Gz-ySd"/>
+                            <constraint firstItem="Rle-Fg-9Ni" firstAttribute="bottom" secondItem="3GP-PP-tEK" secondAttribute="bottom" id="yl1-Gz-ySd"/>
                             <constraint firstItem="cac-2u-u6l" firstAttribute="leading" secondItem="Rle-Fg-9Ni" secondAttribute="leading" constant="20" id="zwa-1c-3JK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rle-Fg-9Ni"/>
@@ -310,10 +310,10 @@
             </objects>
             <point key="canvasLocation" x="76.811594202898561" y="102.45535714285714"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail Overview View Controller-->
         <scene sceneID="0qq-oR-weq">
             <objects>
-                <viewController id="Ni8-EJ-BDV" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailOverviewViewController" id="Ni8-EJ-BDV" customClass="MovieDetailOverviewViewController" customModule="MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="14n-4v-DHT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,18 +335,18 @@
                                         </state>
                                     </button>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh8-UB-6iN">
-                                        <rect key="frame" x="0.0" y="68" width="414" height="704.5"/>
+                                        <rect key="frame" x="0.0" y="68" width="414" height="738.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="InL-hf-Yhm" userLabel="ContentView">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="902"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7e-h3-ZQZ">
                                                         <rect key="frame" x="20" y="0.0" width="374" height="902"/>
-                                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis risus. Ac tortor vitae purus faucibus ornare suspendisse sed. Aliquam etiam erat velit scelerisque in dictum non consectetur a. At auctor urna nunc id. Id neque aliquam vestibulum morbi blandit cursus risus. Eget egestas purus viverra accumsan in nisl. Felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices. Sem et tortor consequat id porta nibh venenatis cras sed. Enim nec dui nunc mattis enim. Orci ac auctor augue mauris augue neque. In arcu cursus euismod quis viverra nibh cras. Vulputate eu scelerisque felis imperdiet proin fermentum leo vel orci. Nullam ac tortor vitae purus faucibus ornare suspendisse. Vel orci porta non pulvinar neque laoreet.
+                                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non odio euismod lacinia at quis risus. Ac tortor vitae purus faucibus ornare suspendisse sed. Aliquam etiam erat velit scelerisque in dictum non consectetur a. At auctor urna nunc id. Id neque aliquam vestibulum morbi blandit cursus risus. Eget egestas purus viverra accumsan in nisl. Felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices. Sem et tortor consequat id porta nibh venenatis cras sed. Enim nec dui nunc mattis enim. Orci ac auctor augue mauris augue neque. In arcu cursus euismod quis viverra nibh cras. Vulputate eu scelerisque felis imperdiet proin fermentum leo vel orci. Nullam ac tortor vitae purus faucibus ornare suspendisse. Vel orci porta non pulvinar neque laoreet.
 
 Semper eget duis at tellus at urna. Mattis ullamcorper velit sed ullamcorper morbi. Nunc sed id semper risus in hendrerit gravida rutrum. Sed faucibus turpis in eu. Praesent semper feugiat nibh sed pulvinar proin gravida. Varius vel pharetra vel turpis nunc eget lorem. Vel quam elementum pulvinar etiam non quam. Ut pharetra sit amet aliquam id diam maecenas. In hac habitasse platea dictumst vestibulum rhoncus est. Dignissim enim sit amet venenatis. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus.
 
-Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis molestie a iaculis at erat. Vestibulum lectus mauris ultrices eros in cursus. A diam sollicitudin tempor id eu nisl nunc mi. Feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Diam in arcu cursus euismod quis viverra nibh cras. Nunc faucibus a pellentesque sit amet porttitor. Eget arcu dictum varius duis at consectetur lorem donec. Sed odio morbi quis commodo odio aenean sed adipiscing diam. Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Pellentesque massa placerat duis ultricies. At ultrices mi tempus imperdiet nulla malesuada. Tincidunt dui ut ornare lectus.</mutableString>
+Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis molestie a iaculis at erat. Vestibulum lectus mauris ultrices eros in cursus. A diam sollicitudin tempor id eu nisl nunc mi. Feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Diam in arcu cursus euismod quis viverra nibh cras. Nunc faucibus a pellentesque sit amet porttitor. Eget arcu dictum varius duis at consectetur lorem donec. Sed odio morbi quis commodo odio aenean sed adipiscing diam. Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Pellentesque massa placerat duis ultricies. At ultrices mi tempus imperdiet nulla malesuada. Tincidunt dui ut ornare lectus.</string>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -378,13 +378,13 @@ Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis mole
                                     <constraint firstItem="f9e-K7-Nlg" firstAttribute="top" secondItem="oJE-J8-5yd" secondAttribute="top" constant="20" id="Yay-2y-TSG"/>
                                     <constraint firstItem="hh8-UB-6iN" firstAttribute="leading" secondItem="oJE-J8-5yd" secondAttribute="leading" id="acr-FM-Ltl"/>
                                     <constraint firstItem="OCU-1Y-SJa" firstAttribute="centerY" secondItem="f9e-K7-Nlg" secondAttribute="centerY" id="cPy-To-egJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="hh8-UB-6iN" secondAttribute="bottom" constant="34" id="erE-7T-7wq"/>
+                                    <constraint firstAttribute="bottom" secondItem="hh8-UB-6iN" secondAttribute="bottom" id="erE-7T-7wq"/>
                                     <constraint firstAttribute="trailing" secondItem="hh8-UB-6iN" secondAttribute="trailing" id="qdy-hV-mOd"/>
                                     <constraint firstItem="f9e-K7-Nlg" firstAttribute="leading" secondItem="oJE-J8-5yd" secondAttribute="leading" constant="20" id="wee-T1-Gi8"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.20200128424657535" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pM4-nx-Vzm" firstAttribute="trailing" secondItem="oJE-J8-5yd" secondAttribute="trailing" id="PP2-X7-ARk"/>
                             <constraint firstAttribute="bottom" secondItem="oJE-J8-5yd" secondAttribute="bottom" id="jwu-lB-5aH"/>
@@ -394,15 +394,20 @@ Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis mole
                         <viewLayoutGuide key="safeArea" id="pM4-nx-Vzm"/>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="closeButton" destination="OCU-1Y-SJa" id="Ikk-hv-4p3"/>
+                        <outlet property="containerView" destination="oJE-J8-5yd" id="jYz-Q8-9ui"/>
+                        <outlet property="movieOverviewLabel" destination="e7e-h3-ZQZ" id="42D-AC-Zeu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5O-UA-NuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850" y="107"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail Reviews View Controller-->
         <scene sceneID="F1k-Iv-9PZ">
             <objects>
-                <viewController id="Sk6-Cv-jkb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailReviewsViewController" id="Sk6-Cv-jkb" customClass="MovieDetailReviewsViewController" customModule="MovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NM6-5N-MRf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,15 +428,15 @@ Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis mole
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qiW-qj-OLD">
-                                        <rect key="frame" x="0.0" y="68" width="414" height="704.5"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qiW-qj-OLD">
+                                        <rect key="frame" x="0.0" y="68" width="414" height="738.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qiW-qj-OLD" secondAttribute="trailing" id="2DI-MO-YVh"/>
-                                    <constraint firstAttribute="bottom" secondItem="qiW-qj-OLD" secondAttribute="bottom" constant="34" id="5Lf-QG-OjI"/>
+                                    <constraint firstAttribute="bottom" secondItem="qiW-qj-OLD" secondAttribute="bottom" id="5Lf-QG-OjI"/>
                                     <constraint firstItem="qiW-qj-OLD" firstAttribute="leading" secondItem="ycR-f6-Mog" secondAttribute="leading" id="JTV-fq-Pdp"/>
                                     <constraint firstItem="vby-cs-TPp" firstAttribute="top" secondItem="ycR-f6-Mog" secondAttribute="top" constant="20" id="ZXh-9e-fe2"/>
                                     <constraint firstItem="kST-1p-uTw" firstAttribute="centerY" secondItem="vby-cs-TPp" secondAttribute="centerY" id="dhE-jF-b28"/>
@@ -441,7 +446,7 @@ Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis mole
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ycR-f6-Mog" secondAttribute="bottom" id="kjA-JB-50r"/>
                             <constraint firstItem="ycR-f6-Mog" firstAttribute="height" secondItem="NM6-5N-MRf" secondAttribute="height" multiplier="9/10" id="zCd-1Q-CBf"/>
@@ -451,6 +456,11 @@ Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis mole
                         <viewLayoutGuide key="safeArea" id="Itf-Mu-SOZ"/>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="closeButton" destination="kST-1p-uTw" id="vTK-uf-FbJ"/>
+                        <outlet property="containerView" destination="ycR-f6-Mog" id="swM-Zt-PXl"/>
+                        <outlet property="reviewsTableView" destination="qiW-qj-OLD" id="6BE-xo-ktY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdE-l5-28p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

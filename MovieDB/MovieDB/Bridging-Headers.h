@@ -15,6 +15,7 @@
 
 @import RxSwift;
 @import RxCocoa;
+@import RxGesture;
 @import NSObject_Rx;
 @import RxDataSources;
 @import Then;

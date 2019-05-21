@@ -9,5 +9,9 @@
 @testable import MovieDB
 
 final class CategoriesNavigatorMock: CategoriesNavigatorType {
+    var toMovieDetailCalled = false
     
+    func toMovieDetail() {
+        toMovieDetailCalled = true
+    }
 }

@@ -68,4 +68,55 @@ extension UIViewController {
     func hideNavigationBar() {
         navigationController?.isNavigationBarHidden = true
     }
+    
+    func hideTabBar(_ isHidden: Bool) {
+        if let tabBarController = tabBarController as? RAMAnimatedTabBarController {
+            tabBarController.animationTabBarHidden(isHidden)
+        }
+    }
+}
+
+extension UIViewController {
+    func addBottomSheetViewController(_ viewController: UIViewController) {
+        addChild(viewController)
+        view.addSubview(viewController.view)
+        viewController.didMove(toParent: self)
+        
+        viewController.view.frame = CGRect(x: 0,
+                                           y: view.frame.maxY,
+                                           width: view.frame.width,
+                                           height: view.frame.height)
+    }
+    
+    func presentSheetViewController() {
+        UIView.animate(withDuration: 0.3,
+                       animations: { [weak self] in
+                        guard let self = self else { return }
+                        
+                        self.view.frame = CGRect(x: 0,
+                                                 y: 0,
+                                                 width: self.view.frame.width,
+                                                 height: self.view.frame.height)
+            },
+                       completion: { _ in
+                        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        })
+    }
+    
+    func dismissSheetViewController() {
+        view.backgroundColor = .clear
+        UIView.animate(withDuration: 0.3,
+                       animations: { [weak self] in
+                        guard let self = self else { return }
+                        
+                        self.view.frame = CGRect(x: 0,
+                                                 y: self.view.bounds.maxY,
+                                                 width: self.view.frame.width,
+                                                 height: self.view.frame.height)
+                        },
+                       completion: { _ in
+                        self.view.removeFromSuperview()
+                        self.removeFromParent()
+                        })
+    }
 }

@@ -11,4 +11,5 @@ import UIKit
 enum Storyboards {
     static let main = UIStoryboard(name: "Main", bundle: nil)
     static let movieDetail = UIStoryboard(name: "MovieDetail", bundle: nil)
+    static let castCrew = UIStoryboard(name: "CastCrew", bundle: nil)
 }
