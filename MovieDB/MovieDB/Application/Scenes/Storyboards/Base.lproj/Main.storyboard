@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IJd-iK-dHb" customClass="LoadMoreCollectionView" customModule="MGLoadMore">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="119" width="414" height="743"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eax-bQ-fKU">
                                     <size key="itemSize" width="50" height="50"/>
@@ -29,23 +29,34 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIC-7k-d6F">
+                                <rect key="frame" x="359" y="74" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="2Zm-7Y-irU"/>
+                                    <constraint firstAttribute="width" constant="25" id="qTi-8Q-D8B"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="icon-search"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="IJd-iK-dHb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="44" id="0TP-Ou-hsS"/>
-                            <constraint firstItem="IJd-iK-dHb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="77E-kT-EBq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IJd-iK-dHb" secondAttribute="bottom" id="kpZ-5Q-8L0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IJd-iK-dHb" secondAttribute="trailing" id="mZX-2s-vmK"/>
+                            <constraint firstItem="IJd-iK-dHb" firstAttribute="top" secondItem="lIC-7k-d6F" secondAttribute="bottom" constant="20" id="33O-lM-lD4"/>
+                            <constraint firstItem="lIC-7k-d6F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Q4G-d0-3md"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lIC-7k-d6F" secondAttribute="trailing" constant="30" id="TKW-o8-3PS"/>
+                            <constraint firstItem="IJd-iK-dHb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="edq-In-sdf"/>
+                            <constraint firstItem="IJd-iK-dHb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jV7-lW-jJ8"/>
+                            <constraint firstItem="IJd-iK-dHb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yUY-RX-F68"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="IJd-iK-dHb" id="pV8-Eb-vC3"/>
+                        <outlet property="searchButton" destination="lIC-7k-d6F" id="jp9-IX-9Bj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2855.072463768116" y="138.61607142857142"/>
+            <point key="canvasLocation" x="2853.6231884057975" y="138.61607142857142"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="svG-Kz-vdL">
@@ -141,4 +152,7 @@
             <point key="canvasLocation" x="4313.04347826087" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-search" width="128" height="128"/>
+    </resources>
 </document>

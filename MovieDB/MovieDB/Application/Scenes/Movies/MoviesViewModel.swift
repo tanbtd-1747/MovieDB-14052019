@@ -17,7 +17,8 @@ extension MoviesViewModel: ViewModelType {
         let loadTrigger: Driver<CategoryType>
         let reloadTrigger: Driver<CategoryType>
         let loadMoreTrigger: Driver<CategoryType>
-        let selectRepoTrigger: Driver<IndexPath>
+        let selectMovieTrigger: Driver<IndexPath>
+        let toSearchTrigger: Driver<Void>
     }
     
     struct Output {
@@ -26,9 +27,10 @@ extension MoviesViewModel: ViewModelType {
         let refreshing: Driver<Bool>
         let loadingMore: Driver<Bool>
         let fetchItems: Driver<Void>
-        let repoList: Driver<[Movie]>
-        let selectedRepo: Driver<Void>
+        let movieList: Driver<[Movie]>
+        let selectedMovie: Driver<Void>
         let isEmptyData: Driver<Bool>
+        let toSearch: Driver<Void>
     }
     
     func transform(_ input: Input) -> Output {
@@ -42,25 +44,28 @@ extension MoviesViewModel: ViewModelType {
         
         let (page, fetchItems, loadError, loading, refreshing, loadingMore) = loadMoreOutput
         
-        let repoList = page
+        let movieList = page
             .map { $0.items.map { $0 } }
             .asDriverOnErrorJustComplete()
         
-        let selectedRepo = input.selectRepoTrigger
-            .withLatestFrom(repoList) {
+        let selectedMovie = input.selectMovieTrigger
+            .withLatestFrom(movieList) {
                 return ($0, $1)
             }
             .map { indexPath, repoList in
                 return repoList[indexPath.row]
             }
-            .do(onNext: { _ in
-                //self.navigator.toRepoDetail(repo: repo)
+            .do(onNext: { movie in
+                self.navigator.toMoviesDetail(movie: movie)
             })
             .mapToVoid()
         
         let isEmptyData = checkIfDataIsEmpty(fetchItemsTrigger: fetchItems,
                                              loadTrigger: Driver.merge(loading, refreshing),
-                                             items: repoList)
+                                             items: movieList)
+        let toSearch = input.toSearchTrigger
+            .do(onNext: { self.navigator.toSearchs()
+            })
         
         return Output(
             error: loadError,
@@ -68,9 +73,11 @@ extension MoviesViewModel: ViewModelType {
             refreshing: refreshing,
             loadingMore: loadingMore,
             fetchItems: fetchItems,
-            repoList: repoList,
-            selectedRepo: selectedRepo,
-            isEmptyData: isEmptyData
+            movieList: movieList,
+            selectedMovie: selectedMovie,
+            isEmptyData: isEmptyData,
+            toSearch: toSearch
         )
     }
 }
+
