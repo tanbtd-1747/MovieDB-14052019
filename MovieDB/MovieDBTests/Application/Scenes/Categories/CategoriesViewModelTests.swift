@@ -24,6 +24,7 @@ final class CategoriesViewModelTests: XCTestCase {
     private let loadTrigger = PublishSubject<CategoryType>()
     private let reloadTrigger = PublishSubject<CategoryType>()
     private let loadMoreTrigger = PublishSubject<CategoryType>()
+    private let selectMovieTrigger = PublishSubject<IndexPath>()
 
     override func setUp() {
         super.setUp()
@@ -36,7 +37,8 @@ final class CategoriesViewModelTests: XCTestCase {
         input = CategoriesViewModel.Input(
             loadTrigger: loadTrigger.asDriverOnErrorJustComplete(),
             reloadTrigger: reloadTrigger.asDriverOnErrorJustComplete(),
-            loadMoreTrigger: loadMoreTrigger.asDriverOnErrorJustComplete())
+            loadMoreTrigger: loadMoreTrigger.asDriverOnErrorJustComplete(),
+            selectMovieTrigger: selectMovieTrigger.asDriverOnErrorJustComplete())
         output = viewModel.transform(input)
         
         output.error.drive().disposed(by: disposeBag)
@@ -45,6 +47,7 @@ final class CategoriesViewModelTests: XCTestCase {
         output.loadingMore.drive().disposed(by: disposeBag)
         output.fetchItems.drive().disposed(by: disposeBag)
         output.moviesList.drive().disposed(by: disposeBag)
+        output.selectedMovie.drive().disposed(by: disposeBag)
     }
     
     func test_loadTriggerInvoked_getMoviesList() {
@@ -162,5 +165,12 @@ final class CategoriesViewModelTests: XCTestCase {
         loadMoreTrigger.onNext(.popular)
         
         XCTAssertFalse(useCase.loadMoreMoviesListCalled)
+    }
+    
+    func test_selectMovieTriggerInvoked_toMovieDetail() {
+        loadTrigger.onNext(.popular)
+        selectMovieTrigger.onNext(IndexPath(row: 0, section: 0))
+        
+        XCTAssert(navigator.toMovieDetailCalled)
     }
 }

@@ -18,6 +18,6 @@ final class CastCrewCollectionViewCell: UICollectionViewCell, NibReusable {
     }
     
     private func configSubviews() {
-        crewImageView.makeRoundedAndShadowed()
+        crewImageView.makeRounded()
     }
 }

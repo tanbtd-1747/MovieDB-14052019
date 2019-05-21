@@ -15,5 +15,10 @@ final class ReviewTableViewCell: UITableViewCell, NibReusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        configSubviews()
+    }
+    
+    private func configSubviews() {
+        reviewImageView.makeRounded(radius: reviewImageView.frame.height / 2)
     }
 }

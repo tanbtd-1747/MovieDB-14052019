@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-final class MovieDetailViewController: UIViewController {
+final class MovieDetailViewController: UIViewController, BindableType {
     @IBOutlet weak var movieBackdropImageView: UIImageView!
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -25,6 +25,8 @@ final class MovieDetailViewController: UIViewController {
     
     let layoutOption = LayoutOption()
     
+    var viewModel: MovieDetailViewModel!
+    
     deinit {
         logDeinit()
     }
@@ -32,6 +34,11 @@ final class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configSubviews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideTabBar(true)
     }
     
     private func configSubviews() {
@@ -44,6 +51,29 @@ final class MovieDetailViewController: UIViewController {
             $0.register(cellType: CastCrewCollectionViewCell.self)
             $0.delegate = self
         }
+    }
+    
+    func bindViewModel() {
+        let input = MovieDetailViewModel.Input(
+            backButtonTrigger: backButton.rx.tap.asDriver(),
+            reviewsButtonTrigger: reviewsButton.rx.tap.asDriver(),
+            overviewLabelTapTrigger: movieOverviewLabel.rx.tapGesture().when(.recognized).asDriverOnErrorJustComplete(),
+            selectCastCrewTrigger: movieCastCrewCollectionView.rx.itemSelected.asDriver()
+        )
+        let output = viewModel.transform(input)
+        
+        output.backButtonTapped
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.reviewsButtonTapped
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.overviewLabelTapped
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.castCrewSelected
+            .drive()
+            .disposed(by: rx.disposeBag)
     }
 }
 

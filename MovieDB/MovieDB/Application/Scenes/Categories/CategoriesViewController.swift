@@ -25,6 +25,11 @@ final class CategoriesViewController: UIViewController, BindableType {
         configSubviews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideTabBar(false)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         hideNavigationBar()

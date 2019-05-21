@@ -42,6 +42,9 @@ PODS:
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
+  - RxGesture (2.2.0):
+    - RxCocoa (~> 4.5)
+    - RxSwift (~> 4.5)
   - RxSwift (4.5.0)
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
@@ -65,6 +68,7 @@ DEPENDENCIES:
   - Reusable (= 4.0.4)
   - RxBlocking
   - RxDataSources (= 3.1)
+  - RxGesture
   - RxTest
   - SDWebImage (= 5.0)
   - Then (= 2.4)
@@ -90,6 +94,7 @@ SPEC REPOS:
     - RxBlocking
     - RxCocoa
     - RxDataSources
+    - RxGesture
     - RxSwift
     - RxTest
     - SDWebImage
@@ -115,12 +120,13 @@ SPEC CHECKSUMS:
   RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
   TTSegmentedControl: 422a8fab507a02a60050476d69d577052550f592
 
-PODFILE CHECKSUM: 1cd233a590fee3cc62340d5798ac598d3a8ae1d8
+PODFILE CHECKSUM: 6282f54d387123aca2f1433c2bbe9ed52e1d10ac
 
 COCOAPODS: 1.6.1

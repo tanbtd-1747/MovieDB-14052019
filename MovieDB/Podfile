@@ -20,6 +20,7 @@ target 'MovieDB' do
     
   # Rx
   pod 'NSObject+Rx', '4.4'
+  pod 'RxGesture'
   pod 'RxDataSources', '3.1'
     
   # Core Data
