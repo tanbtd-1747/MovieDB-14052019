@@ -15,6 +15,7 @@ final class MoviesViewController: UIViewController, BindableType {
     }
     
     @IBOutlet weak var collectionView: LoadMoreCollectionView!
+    @IBOutlet weak var searchButton: UIButton!
     
     struct Options {
         var itemSpacing: CGFloat = 8
@@ -29,12 +30,17 @@ final class MoviesViewController: UIViewController, BindableType {
     }
     
     private var options = Options()
+
     var viewModel: MoviesViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         cofigView()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func cofigView() {
@@ -58,18 +64,19 @@ final class MoviesViewController: UIViewController, BindableType {
             loadTrigger: loadTrigger,
             reloadTrigger: reloadTrigger,
             loadMoreTrigger: loadMoreTrigger,
-            selectRepoTrigger: collectionView.rx.itemSelected.asDriver()
+            selectMovieTrigger: collectionView.rx.itemSelected.asDriver(),
+            toSearchTrigger: searchButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
         
-        output.repoList
+        output.movieList
             .drive(collectionView.rx.items) { collectionView, index, result in
                 return collectionView.dequeueReusableCell(for: IndexPath(row: index, section: 0),
                                                           cellType: MoviesCollectionViewCell.self)
                     .then {
                         $0.bindViewModel(MovieViewModel(movie: result))
-                    }
+                }
             }
             .disposed(by: rx.disposeBag)
         
@@ -88,10 +95,13 @@ final class MoviesViewController: UIViewController, BindableType {
         output.fetchItems
             .drive()
             .disposed(by: rx.disposeBag)
-        output.selectedRepo
+        output.selectedMovie
             .drive()
             .disposed(by: rx.disposeBag)
         output.isEmptyData
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.toSearch
             .drive()
             .disposed(by: rx.disposeBag)
     }
@@ -129,5 +139,4 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDelega
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return options.itemSpacing
     }
-    
 }
