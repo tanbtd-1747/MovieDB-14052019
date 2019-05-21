@@ -23,7 +23,7 @@ final class MovieDetailViewModelTests: XCTestCase {
     
     private let backButtonTrigger = PublishSubject<Void>()
     private let reviewsButtonTrigger = PublishSubject<Void>()
-    private let overviewLabelTrigger = PublishSubject<UITapGestureRecognizer>()
+    private let overviewLabelTapTrigger = PublishSubject<UITapGestureRecognizer>()
     private let selectCastCrewTrigger = PublishSubject<IndexPath>()
 
     override func setUp() {
@@ -36,7 +36,8 @@ final class MovieDetailViewModelTests: XCTestCase {
         
         input = MovieDetailViewModel.Input(backButtonTrigger: backButtonTrigger.asDriverOnErrorJustComplete(),
                                            reviewsButtonTrigger: reviewsButtonTrigger.asDriverOnErrorJustComplete(),
-                                           overviewLabelTrigger: overviewLabelTrigger.asDriverOnErrorJustComplete(),
+                                           overviewLabelTapTrigger: overviewLabelTapTrigger
+                                            .asDriverOnErrorJustComplete(),
                                            selectCastCrewTrigger: selectCastCrewTrigger.asDriverOnErrorJustComplete())
         output = viewModel.transform(input)
         
@@ -59,7 +60,7 @@ final class MovieDetailViewModelTests: XCTestCase {
     }
     
     func test_overviewLabelTriggerInvoked_toMovieDetailOverview() {
-        overviewLabelTrigger.onNext(UITapGestureRecognizer())
+        overviewLabelTapTrigger.onNext(UITapGestureRecognizer())
         
         XCTAssert(navigator.toMovieDetailOverviewCalled)
     }

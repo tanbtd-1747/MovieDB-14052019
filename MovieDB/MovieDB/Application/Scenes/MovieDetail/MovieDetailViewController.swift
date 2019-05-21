@@ -57,7 +57,7 @@ final class MovieDetailViewController: UIViewController, BindableType {
         let input = MovieDetailViewModel.Input(
             backButtonTrigger: backButton.rx.tap.asDriver(),
             reviewsButtonTrigger: reviewsButton.rx.tap.asDriver(),
-            overviewLabelTrigger: movieOverviewLabel.rx.tapGesture().when(.recognized).asDriverOnErrorJustComplete(),
+            overviewLabelTapTrigger: movieOverviewLabel.rx.tapGesture().when(.recognized).asDriverOnErrorJustComplete(),
             selectCastCrewTrigger: movieCastCrewCollectionView.rx.itemSelected.asDriver()
         )
         let output = viewModel.transform(input)

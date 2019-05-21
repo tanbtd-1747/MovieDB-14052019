@@ -15,7 +15,7 @@ extension MovieDetailViewModel: ViewModelType {
     struct Input {
         let backButtonTrigger: Driver<Void>
         let reviewsButtonTrigger: Driver<Void>
-        let overviewLabelTrigger: Driver<UITapGestureRecognizer>
+        let overviewLabelTapTrigger: Driver<UITapGestureRecognizer>
         let selectCastCrewTrigger: Driver<IndexPath>
     }
     
@@ -37,7 +37,7 @@ extension MovieDetailViewModel: ViewModelType {
                 self.navigator.toMovieDetailReviews()
             })
         
-        let overviewLabelTapped = input.overviewLabelTrigger
+        let overviewLabelTapped = input.overviewLabelTapTrigger
             .do(onNext: { _ in
                 self.navigator.toMovieDetailOverview()
             })
