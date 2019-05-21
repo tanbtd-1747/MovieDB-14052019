@@ -40,7 +40,6 @@ extension Movie {
 extension Movie: Then { }
 
 extension Movie: Mappable {
-    
     init?(map: Map) {
         self.init()
     }

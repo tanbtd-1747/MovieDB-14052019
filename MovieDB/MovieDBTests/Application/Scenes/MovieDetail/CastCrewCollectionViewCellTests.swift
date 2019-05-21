@@ -20,6 +20,6 @@ final class CastCrewCollectionViewCellTests: XCTestCase {
     func test_ibOutlets() {
         XCTAssertNotNil(cell)
         XCTAssertNotNil(cell.crewImageView)
-        XCTAssertNotNil(cell.crewName)
+        XCTAssertNotNil(cell.crewNameLabel)
     }
 }

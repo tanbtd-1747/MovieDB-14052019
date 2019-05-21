@@ -54,8 +54,8 @@ extension CategoriesViewModel: ViewModelType {
             .map { indexPath, moviesList in
                 return moviesList[indexPath.row]
             }
-            .do(onNext: { _ in
-                self.navigator.toMovieDetail()
+            .do(onNext: { movie in
+                self.navigator.toMovieDetail(movie: movie)
             })
             .mapToVoid()
         

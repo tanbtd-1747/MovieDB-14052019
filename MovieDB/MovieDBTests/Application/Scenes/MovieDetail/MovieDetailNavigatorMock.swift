@@ -17,13 +17,13 @@ final class MovieDetailNavigatorMock: MovieDetailNavigatorType {
     
     var toMovieDetailOverviewCalled = false
     
-    func toMovieDetailOverview() {
+    func toMovieDetailOverview(movieDetail: MovieDetail) {
         toMovieDetailOverviewCalled = true
     }
     
     var toMovieDetailReviewsCalled = false
     
-    func toMovieDetailReviews() {
+    func toMovieDetailReviews(movieDetail: MovieDetail) {
         toMovieDetailReviewsCalled = true
     }
     

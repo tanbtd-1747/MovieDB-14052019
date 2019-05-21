@@ -11,6 +11,8 @@ extension API {
         private static let baseURL = "https://api.themoviedb.org/3"
         static let posterUrl = "http://image.tmdb.org/t/p/w185/"
         static let mediaBackdropPath = "https://image.tmdb.org/t/p/w500"
+        static let profileUrl = "https://image.tmdb.org/t/p/w92/"
+        static let avatarUrl = "https://secure.gravatar.com/avatar/"
 
         static let moviesListURL = baseURL + "/movie/"
         static let searchMovies = baseURL + "/search/movie"

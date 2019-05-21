@@ -9,5 +9,7 @@
 @testable import MovieDB
 
 final class MovieDetailUseCaseMock: MovieDetailUseCaseType {
-    
+    func getMovieDetail(id: Int) -> Observable<MovieDetail> {
+        return Observable.just(MovieDetail())
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Cosmos
+import SDWebImage
 
 final class MovieDetailViewController: UIViewController, BindableType {
     @IBOutlet weak var movieBackdropImageView: UIImageView!
@@ -43,6 +44,7 @@ final class MovieDetailViewController: UIViewController, BindableType {
     
     private func configSubviews() {
         moviePosterImageView.makeRoundedAndShadowed()
+        backButton.makeRoundedAndShadowed()
         playButton.makeRounded(radius: playButton.frame.height / 2)
         favoriteButton.makeRoundedAndShadowed(cornerRadius: favoriteButton.frame.height / 2)
         reviewsButton.makeRoundedAndShadowed(cornerRadius: reviewsButton.frame.height / 2)
@@ -55,6 +57,7 @@ final class MovieDetailViewController: UIViewController, BindableType {
     
     func bindViewModel() {
         let input = MovieDetailViewModel.Input(
+            loadTrigger: Driver.just(()),
             backButtonTrigger: backButton.rx.tap.asDriver(),
             reviewsButtonTrigger: reviewsButton.rx.tap.asDriver(),
             overviewLabelTapTrigger: movieOverviewLabel.rx.tapGesture().when(.recognized).asDriverOnErrorJustComplete(),
@@ -62,6 +65,12 @@ final class MovieDetailViewController: UIViewController, BindableType {
         )
         let output = viewModel.transform(input)
         
+        output.error
+            .drive(rx.error)
+            .disposed(by: rx.disposeBag)
+        output.isLoading
+            .drive(rx.isLoading)
+            .disposed(by: rx.disposeBag)
         output.backButtonTapped
             .drive()
             .disposed(by: rx.disposeBag)
@@ -74,6 +83,55 @@ final class MovieDetailViewController: UIViewController, BindableType {
         output.castCrewSelected
             .drive()
             .disposed(by: rx.disposeBag)
+        output.movieDetail
+            .drive(onNext: { movieDetail in
+                self.bindModel(MovieDetailModel(movieDetail: movieDetail))
+            })
+            .disposed(by: rx.disposeBag)
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<Section<CastCrew>>(
+            configureCell: { _, collectionView, indexPath, castCrew in
+                let cell = collectionView.dequeueReusableCell(for: indexPath,
+                                                              cellType: CastCrewCollectionViewCell.self)
+                    .then {
+                        $0.bindModel(CastCrewModel(castCrew: castCrew))
+                    }
+                return cell
+            })
+        
+        output.castCrewList
+            .map { castCrew in
+                return [Section<CastCrew>(items: castCrew)]
+            }
+            .drive(movieCastCrewCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        output.isEmptyCastCrewList
+            .drive(movieCastCrewCollectionView.rx.isEmptyData)
+            .disposed(by: rx.disposeBag)
+    }
+    
+    private func bindModel(_ model: MovieDetailModel?) {
+        if let model = model {
+            model.do {
+                movieBackdropImageView.sd_setImage(with: $0.backdropURL, completed: nil)
+                moviePosterImageView.sd_setImage(with: $0.posterURL, completed: nil)
+                movieTitleLabel.text = $0.title
+                movieRatingView.rating = $0.voteAverage
+                movieRatingView.text = $0.voteAverageString
+                movieLanguageLabel.text = $0.language
+                movieDurationLabel.text = $0.duration
+                movieOverviewLabel.text = $0.overview
+            }
+        } else {
+            movieBackdropImageView.image = nil
+            moviePosterImageView.image = nil
+            movieTitleLabel.text = ""
+            movieRatingView.rating = 0.0
+            movieRatingView.text = ""
+            movieLanguageLabel.text = ""
+            movieDurationLabel.text = ""
+            movieOverviewLabel.text = ""
+        }
     }
 }
 

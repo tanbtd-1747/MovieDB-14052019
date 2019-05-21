@@ -7,15 +7,16 @@
 //
 
 protocol CategoriesNavigatorType {
-    func toMovieDetail()
+    func toMovieDetail(movie: Movie)
 }
 
 struct CategoriesNavigator: CategoriesNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
     
-    func toMovieDetail() {
-        let viewController: MovieDetailViewController = assembler.resolve(navigationController: navigationController)
+    func toMovieDetail(movie: Movie) {
+        let viewController: MovieDetailViewController = assembler.resolve(navigationController: navigationController,
+                                                                          movie: movie)
         navigationController.pushViewController(viewController, animated: true)
     }
 }
