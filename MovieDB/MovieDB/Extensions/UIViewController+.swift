@@ -108,7 +108,7 @@ extension UIViewController {
                                                  y: 0,
                                                  width: self.view.frame.width,
                                                  height: self.view.frame.height)
-            },
+                        },
                        completion: { _ in
                         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         })
@@ -141,7 +141,7 @@ extension UIViewController {
                                                  y: -self.view.frame.height,
                                                  width: self.view.frame.width,
                                                  height: self.view.frame.height)
-            },
+                        },
                        completion: { _ in
                         self.view.removeFromSuperview()
                         self.removeFromParent()
