@@ -88,6 +88,17 @@ extension UIViewController {
                                            height: view.frame.height)
     }
     
+    func addTopSheetViewController(_ viewController: UIViewController) {
+        addChild(viewController)
+        view.addSubview(viewController.view)
+        viewController.didMove(toParent: self)
+        
+        viewController.view.frame = CGRect(x: 0,
+                                           y: -viewController.view.frame.height,
+                                           width: view.frame.width,
+                                           height: view.frame.height)
+    }
+    
     func presentSheetViewController() {
         UIView.animate(withDuration: 0.3,
                        animations: { [weak self] in
@@ -103,7 +114,7 @@ extension UIViewController {
         })
     }
     
-    func dismissSheetViewController() {
+    func dismissBottomSheetViewController() {
         view.backgroundColor = .clear
         UIView.animate(withDuration: 0.3,
                        animations: { [weak self] in
@@ -118,5 +129,22 @@ extension UIViewController {
                         self.view.removeFromSuperview()
                         self.removeFromParent()
                         })
+    }
+    
+    func dismissTopSheetViewController() {
+        view.backgroundColor = .clear
+        UIView.animate(withDuration: 0.3,
+                       animations: { [weak self] in
+                        guard let self = self else { return }
+                        
+                        self.view.frame = CGRect(x: 0,
+                                                 y: -self.view.frame.height,
+                                                 width: self.view.frame.width,
+                                                 height: self.view.frame.height)
+            },
+                       completion: { _ in
+                        self.view.removeFromSuperview()
+                        self.removeFromParent()
+        })
     }
 }

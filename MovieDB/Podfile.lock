@@ -53,6 +53,7 @@ PODS:
   - SDWebImage/Core (5.0.0)
   - Then (2.4.0)
   - TTSegmentedControl (0.4.7)
+  - YoutubePlayer-in-WKWebView (0.2.5)
 
 DEPENDENCIES:
   - Cosmos (~> 19.0)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - SDWebImage (= 5.0)
   - Then (= 2.4)
   - TTSegmentedControl
+  - YoutubePlayer-in-WKWebView (~> 0.2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -100,6 +102,7 @@ SPEC REPOS:
     - SDWebImage
     - Then
     - TTSegmentedControl
+    - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -126,7 +129,8 @@ SPEC CHECKSUMS:
   SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
   TTSegmentedControl: 422a8fab507a02a60050476d69d577052550f592
+  YoutubePlayer-in-WKWebView: 4dad12b3ece938a6456fa4374df78942f88b485a
 
-PODFILE CHECKSUM: 6282f54d387123aca2f1433c2bbe9ed52e1d10ac
+PODFILE CHECKSUM: e752669a50a679e7b8a33d663caf06a82cbafe4b
 
 COCOAPODS: 1.6.1

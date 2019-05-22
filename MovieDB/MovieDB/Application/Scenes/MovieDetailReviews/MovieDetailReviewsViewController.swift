@@ -43,7 +43,7 @@ final class MovieDetailReviewsViewController: UIViewController, BindableType {
         closeButton.rx.tap
             .asDriver()
             .drive(onNext: { [weak self] in
-                self?.dismissSheetViewController()
+                self?.dismissBottomSheetViewController()
             })
             .disposed(by: rx.disposeBag)
         

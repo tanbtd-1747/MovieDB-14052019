@@ -45,20 +45,20 @@
                                 <rect key="frame" x="150" y="376.5" width="244" height="110"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdE-qT-4GN">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="36.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBC-GC-cux" customClass="CosmosView" customModule="Cosmos">
-                                        <rect key="frame" x="0.0" y="61" width="195" height="11"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="244" height="21.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                                                <real key="value" value="15"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
                                                 <color key="value" red="0.51764705879999995" green="0.86274509799999999" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -143,6 +143,10 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="qBC-GC-cux" firstAttribute="leading" secondItem="EvC-eB-JEl" secondAttribute="leading" id="4ia-Z9-Mxw"/>
+                                    <constraint firstAttribute="trailing" secondItem="qBC-GC-cux" secondAttribute="trailing" id="aKp-Jq-o3Y"/>
+                                </constraints>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GP-PP-tEK">
                                 <rect key="frame" x="0.0" y="506.5" width="414" height="559.5"/>
@@ -466,6 +470,62 @@ Ullamcorper morbi tincidunt ornare massa. Ut ornare lectus sit amet. Mattis mole
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdE-l5-28p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1567" y="107"/>
+        </scene>
+        <!--Video View Controller-->
+        <scene sceneID="Vbg-6W-M6o">
+            <objects>
+                <viewController storyboardIdentifier="VideoViewController" id="gTJ-fq-2xD" customClass="VideoViewController" customModule="MovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s08-7F-DFB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMC-GI-M6t">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="357"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="hyV-Rj-7lQ">
+                                        <rect key="frame" x="20" y="44" width="374" height="103"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHA-7T-43W" userLabel="VideoView" customClass="WKYTPlayerView">
+                                        <rect key="frame" x="0.0" y="147" width="414" height="210"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="210" id="TdJ-UV-Myh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" secondItem="FHA-7T-43W" secondAttribute="height" multiplier="1.7" id="9fL-75-dln"/>
+                                    <constraint firstAttribute="bottom" secondItem="FHA-7T-43W" secondAttribute="bottom" id="M9z-5G-HNb"/>
+                                    <constraint firstAttribute="trailing" secondItem="FHA-7T-43W" secondAttribute="trailing" id="b6S-XY-aLC"/>
+                                    <constraint firstItem="FHA-7T-43W" firstAttribute="top" secondItem="hyV-Rj-7lQ" secondAttribute="bottom" id="l1r-dv-cqf"/>
+                                    <constraint firstItem="hyV-Rj-7lQ" firstAttribute="leading" secondItem="NMC-GI-M6t" secondAttribute="leading" constant="20" id="otk-ie-YNo"/>
+                                    <constraint firstAttribute="trailing" secondItem="hyV-Rj-7lQ" secondAttribute="trailing" constant="20" id="pZh-O8-eFa"/>
+                                    <constraint firstItem="hyV-Rj-7lQ" firstAttribute="top" secondItem="NMC-GI-M6t" secondAttribute="top" constant="44" id="rj6-a2-Flv"/>
+                                    <constraint firstItem="FHA-7T-43W" firstAttribute="leading" secondItem="NMC-GI-M6t" secondAttribute="leading" id="y74-7D-Eri"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NMC-GI-M6t" firstAttribute="leading" secondItem="MW2-xr-IPc" secondAttribute="leading" id="1wd-0t-jIU"/>
+                            <constraint firstItem="MW2-xr-IPc" firstAttribute="trailing" secondItem="NMC-GI-M6t" secondAttribute="trailing" id="D99-Rn-EeZ"/>
+                            <constraint firstItem="NMC-GI-M6t" firstAttribute="top" secondItem="s08-7F-DFB" secondAttribute="top" id="cd7-bt-QhJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MW2-xr-IPc"/>
+                    </view>
+                    <connections>
+                        <outlet property="sheetView" destination="NMC-GI-M6t" id="Ik3-IR-qp7"/>
+                        <outlet property="videoPlayerView" destination="FHA-7T-43W" id="TnR-yd-5QD"/>
+                        <outlet property="videoTitleLabel" destination="hyV-Rj-7lQ" id="bfM-0M-XLv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oKJ-qS-ZPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2290" y="107"/>
         </scene>
     </scenes>
     <resources>

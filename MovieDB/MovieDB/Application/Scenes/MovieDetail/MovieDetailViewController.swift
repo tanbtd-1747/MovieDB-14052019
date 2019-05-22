@@ -61,6 +61,7 @@ final class MovieDetailViewController: UIViewController, BindableType {
             backButtonTrigger: backButton.rx.tap.asDriver(),
             reviewsButtonTrigger: reviewsButton.rx.tap.asDriver(),
             overviewLabelTapTrigger: movieOverviewLabel.rx.tapGesture().when(.recognized).asDriverOnErrorJustComplete(),
+            playButtonTrigger: playButton.rx.tap.asDriver(),
             selectCastCrewTrigger: movieCastCrewCollectionView.rx.itemSelected.asDriver()
         )
         let output = viewModel.transform(input)
@@ -78,6 +79,9 @@ final class MovieDetailViewController: UIViewController, BindableType {
             .drive()
             .disposed(by: rx.disposeBag)
         output.overviewLabelTapped
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.playButtonTapped
             .drive()
             .disposed(by: rx.disposeBag)
         output.castCrewSelected
