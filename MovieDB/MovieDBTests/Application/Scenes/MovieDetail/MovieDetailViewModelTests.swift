@@ -21,6 +21,9 @@ final class MovieDetailViewModelTests: XCTestCase {
     
     private var disposeBag: DisposeBag!
     
+    private let movie = Movie()
+    
+    private let loadTrigger = PublishSubject<Void>()
     private let backButtonTrigger = PublishSubject<Void>()
     private let reviewsButtonTrigger = PublishSubject<Void>()
     private let overviewLabelTapTrigger = PublishSubject<UITapGestureRecognizer>()
@@ -30,11 +33,12 @@ final class MovieDetailViewModelTests: XCTestCase {
         super.setUp()
         navigator = MovieDetailNavigatorMock()
         useCase = MovieDetailUseCaseMock()
-        viewModel = MovieDetailViewModel(navigator: navigator, useCase: useCase)
+        viewModel = MovieDetailViewModel(navigator: navigator, useCase: useCase, movie: movie)
         
         disposeBag = DisposeBag()
         
-        input = MovieDetailViewModel.Input(backButtonTrigger: backButtonTrigger.asDriverOnErrorJustComplete(),
+        input = MovieDetailViewModel.Input(loadTrigger: loadTrigger.asDriverOnErrorJustComplete(),
+                                           backButtonTrigger: backButtonTrigger.asDriverOnErrorJustComplete(),
                                            reviewsButtonTrigger: reviewsButtonTrigger.asDriverOnErrorJustComplete(),
                                            overviewLabelTapTrigger: overviewLabelTapTrigger
                                             .asDriverOnErrorJustComplete(),
@@ -54,18 +58,21 @@ final class MovieDetailViewModelTests: XCTestCase {
     }
     
     func test_reviewsButtonTriggerInvoked_toMovieDetailReviews() {
+        loadTrigger.onNext(())
         reviewsButtonTrigger.onNext(())
         
         XCTAssert(navigator.toMovieDetailReviewsCalled)
     }
     
     func test_overviewLabelTriggerInvoked_toMovieDetailOverview() {
+        loadTrigger.onNext(())
         overviewLabelTapTrigger.onNext(UITapGestureRecognizer())
         
         XCTAssert(navigator.toMovieDetailOverviewCalled)
     }
     
     func test_selectCastCrewTriggerInvoked_toCastCrew() {
+        loadTrigger.onNext(())
         selectCastCrewTrigger.onNext(IndexPath(row: 0, section: 0))
         
         XCTAssert(navigator.toCastCrewCalled)

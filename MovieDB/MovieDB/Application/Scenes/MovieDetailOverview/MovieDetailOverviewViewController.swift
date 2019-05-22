@@ -40,6 +40,13 @@ final class MovieDetailOverviewViewController: UIViewController, BindableType {
                 self?.dismissSheetViewController()
             })
             .disposed(by: rx.disposeBag)
+        
+        let input = MovieDetailOverviewViewModel.Input(loadTrigger: Driver.just(()))
+        let output = viewModel.transform(input)
+        
+        output.overview
+            .drive(movieOverviewLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
 }
 

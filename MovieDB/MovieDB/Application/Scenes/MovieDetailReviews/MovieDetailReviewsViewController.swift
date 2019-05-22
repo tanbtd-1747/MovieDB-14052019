@@ -46,6 +46,26 @@ final class MovieDetailReviewsViewController: UIViewController, BindableType {
                 self?.dismissSheetViewController()
             })
             .disposed(by: rx.disposeBag)
+        
+        let input = MovieDetailReviewsViewModel.Input(loadTrigger: Driver.just(()))
+        let output = viewModel.transform(input)
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<Section<Review>>(
+            configureCell: { _, tableView, indexPath, review in
+                let cell = tableView.dequeueReusableCell(for: indexPath,
+                                                         cellType: ReviewTableViewCell.self)
+                    .then {
+                        $0.bindModel(ReviewModel(review: review))
+                    }
+                return cell
+            })
+        
+        output.reviewsListSection
+            .drive(reviewsTableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        output.isEmptyReviewsList
+            .drive(reviewsTableView.rx.isEmptyData)
+            .disposed(by: rx.disposeBag)
     }
 }
 

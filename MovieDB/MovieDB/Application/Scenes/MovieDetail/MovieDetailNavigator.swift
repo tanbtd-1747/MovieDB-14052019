@@ -8,8 +8,8 @@
 
 protocol MovieDetailNavigatorType {
     func toCategories()
-    func toMovieDetailReviews()
-    func toMovieDetailOverview()
+    func toMovieDetailReviews(movieDetail: MovieDetail)
+    func toMovieDetailOverview(movieDetail: MovieDetail)
     func toCastCrew()
 }
 
@@ -21,16 +21,16 @@ struct MovieDetailNavigator: MovieDetailNavigatorType {
         navigationController.popViewController(animated: true)
     }
     
-    func toMovieDetailReviews() {
-        let reviewsViewController: MovieDetailReviewsViewController = assembler.resolve()
+    func toMovieDetailReviews(movieDetail: MovieDetail) {
+        let reviewsViewController: MovieDetailReviewsViewController = assembler.resolve(movieDetail: movieDetail)
         
         if let detailViewController = navigationController.topViewController as? MovieDetailViewController {
             detailViewController.addBottomSheetViewController(reviewsViewController)
         }
     }
     
-    func toMovieDetailOverview() {
-        let overviewViewController: MovieDetailOverviewViewController = assembler.resolve()
+    func toMovieDetailOverview(movieDetail: MovieDetail) {
+        let overviewViewController: MovieDetailOverviewViewController = assembler.resolve(movieDetail: movieDetail)
         
         if let detailViewController = navigationController.topViewController as? MovieDetailViewController {
             detailViewController.addBottomSheetViewController(overviewViewController)

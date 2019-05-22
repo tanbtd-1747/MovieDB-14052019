@@ -21,4 +21,18 @@ final class ReviewTableViewCell: UITableViewCell, NibReusable {
     private func configSubviews() {
         reviewImageView.makeRounded(radius: reviewImageView.frame.height / 2)
     }
+    
+    func bindModel(_ model: ReviewModel?) {
+        if let model = model {
+            model.do {
+                reviewNameLabel.text = $0.author
+                reviewContentLabel.text = $0.content
+                reviewImageView.sd_setImage(with: $0.avatarURL, completed: nil)
+            }
+        } else {
+            reviewNameLabel.text = ""
+            reviewContentLabel.text = ""
+            reviewImageView.image = nil
+        }
+    }
 }

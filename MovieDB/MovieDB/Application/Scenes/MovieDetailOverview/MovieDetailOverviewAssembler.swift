@@ -7,20 +7,20 @@
 //
 
 protocol MovieDetailOverviewAssembler {
-    func resolve() -> MovieDetailOverviewViewController
-    func resolve() -> MovieDetailOverviewViewModel
+    func resolve(movieDetail: MovieDetail) -> MovieDetailOverviewViewController
+    func resolve(movieDetail: MovieDetail) -> MovieDetailOverviewViewModel
 }
 
 extension MovieDetailOverviewAssembler {
-    func resolve() -> MovieDetailOverviewViewController {
+    func resolve(movieDetail: MovieDetail) -> MovieDetailOverviewViewController {
         let viewController = MovieDetailOverviewViewController.instantiate()
         
-        let viewModel: MovieDetailOverviewViewModel = resolve()
+        let viewModel: MovieDetailOverviewViewModel = resolve(movieDetail: movieDetail)
         viewController.bindViewModel(to: viewModel)
         return viewController
     }
     
-    func resolve() -> MovieDetailOverviewViewModel {
-        return MovieDetailOverviewViewModel()
+    func resolve(movieDetail: MovieDetail) -> MovieDetailOverviewViewModel {
+        return MovieDetailOverviewViewModel(movieDetail: movieDetail)
     }
 }

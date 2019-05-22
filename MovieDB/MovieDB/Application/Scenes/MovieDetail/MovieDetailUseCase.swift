@@ -7,9 +7,13 @@
 //
 
 protocol MovieDetailUseCaseType {
-    
+    func getMovieDetail(id: Int) -> Observable<MovieDetail>
 }
 
 struct MovieDetailUseCase: MovieDetailUseCaseType {
+    let repository: MovieDetailRepositoryType
     
+    func getMovieDetail(id: Int) -> Observable<MovieDetail> {
+        return repository.getMovieDetail(id: id)
+    }
 }

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="96" height="128"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6so-hu-LCx">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6so-hu-LCx">
                         <rect key="frame" x="5" y="5" width="86" height="102.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
@@ -44,7 +44,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="crewImageView" destination="6so-hu-LCx" id="9LG-eW-nbp"/>
-                <outlet property="crewName" destination="vi9-Yo-aHB" id="5ha-ZS-LdE"/>
+                <outlet property="crewNameLabel" destination="vi9-Yo-aHB" id="5ha-ZS-LdE"/>
             </connections>
             <point key="canvasLocation" x="150.72463768115944" y="34.821428571428569"/>
         </collectionViewCell>

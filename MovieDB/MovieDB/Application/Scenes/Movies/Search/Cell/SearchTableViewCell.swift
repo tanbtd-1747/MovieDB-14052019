@@ -8,19 +8,21 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell, NibReusable {
+final class SearchTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var titleLable: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     
     override func prepareForReuse() {
         titleLable.text = ""
         posterImageView.image = nil
+        super.prepareForReuse()
     }
     
     func bindViewModel(_ viewModel: MovieViewModel?) {
         if let viewModel = viewModel {
             titleLable.text = viewModel.title
-            posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath), completed: nil)
+            posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath),
+                                         completed: nil)
         } else {
             titleLable.text = ""
             posterImageView.image = nil

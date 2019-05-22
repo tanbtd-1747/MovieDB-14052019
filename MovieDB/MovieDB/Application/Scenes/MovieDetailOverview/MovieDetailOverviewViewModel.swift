@@ -7,19 +7,26 @@
 //
 
 struct MovieDetailOverviewViewModel {
-    
+    let movieDetail: MovieDetail
 }
 
 extension MovieDetailOverviewViewModel: ViewModelType {
     struct Input {
-        
+        let loadTrigger: Driver<Void>
     }
     
     struct Output {
-        
+        let overview: Driver<String>
     }
     
     func transform(_ input: MovieDetailOverviewViewModel.Input) -> MovieDetailOverviewViewModel.Output {
-        return Output()
+        let overview = input.loadTrigger
+            .map {
+                self.movieDetail.overview
+            }
+        
+        return Output(
+            overview: overview
+        )
     }
 }

@@ -64,7 +64,7 @@ extension MoviesViewModel: ViewModelType {
                                              loadTrigger: Driver.merge(loading, refreshing),
                                              items: movieList)
         let toSearch = input.toSearchTrigger
-            .do(onNext: { self.navigator.toSearchs()
+            .do(onNext: { self.navigator.toSearch()
             })
         
         return Output(
