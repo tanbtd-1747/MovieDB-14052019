@@ -32,6 +32,8 @@ target 'MovieDB' do
   pod 'RAMAnimatedTabBarController'
   pod 'TTSegmentedControl'
   pod 'Cosmos', '~> 19.0'
+  pod "YoutubePlayer-in-WKWebView", "~> 0.2.0" 
+
 
   target 'MovieDBTests' do
     inherit! :search_paths

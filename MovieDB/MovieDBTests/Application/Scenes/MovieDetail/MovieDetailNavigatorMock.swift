@@ -27,6 +27,12 @@ final class MovieDetailNavigatorMock: MovieDetailNavigatorType {
         toMovieDetailReviewsCalled = true
     }
     
+    var toVideoCalled = false
+    
+    func toVideo(movieDetail: MovieDetail) {
+        toVideoCalled = true
+    }
+    
     var toCastCrewCalled = false
     
     func toCastCrew() {

@@ -18,6 +18,7 @@ extension MovieDetailViewModel: ViewModelType {
         let backButtonTrigger: Driver<Void>
         let reviewsButtonTrigger: Driver<Void>
         let overviewLabelTapTrigger: Driver<UITapGestureRecognizer>
+        let playButtonTrigger: Driver<Void>
         let selectCastCrewTrigger: Driver<IndexPath>
     }
     
@@ -25,6 +26,7 @@ extension MovieDetailViewModel: ViewModelType {
         let backButtonTapped: Driver<Void>
         let reviewsButtonTapped: Driver<Void>
         let overviewLabelTapped: Driver<Void>
+        let playButtonTapped: Driver<Void>
         let castCrewSelected: Driver<Void>
         let movieDetailModel: Driver<MovieDetailModel>
         let error: Driver<Error>
@@ -64,6 +66,13 @@ extension MovieDetailViewModel: ViewModelType {
             })
             .mapToVoid()
         
+        let playButtonTapped = input.playButtonTrigger
+            .withLatestFrom(movieDetail)
+            .do(onNext: { movieDetail in
+                self.navigator.toVideo(movieDetail: movieDetail)
+            })
+            .mapToVoid()
+        
         let movieDetailModel = movieDetail
             .map {
                 MovieDetailModel(movieDetail: $0)
@@ -93,6 +102,7 @@ extension MovieDetailViewModel: ViewModelType {
             backButtonTapped: backButtonTapped,
             reviewsButtonTapped: reviewsButtonTapped,
             overviewLabelTapped: overviewLabelTapped,
+            playButtonTapped: playButtonTapped,
             castCrewSelected: castCrewSelected,
             movieDetailModel: movieDetailModel,
             error: errorTracker.asDriver(),

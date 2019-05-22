@@ -10,6 +10,7 @@ protocol MovieDetailNavigatorType {
     func toCategories()
     func toMovieDetailReviews(movieDetail: MovieDetail)
     func toMovieDetailOverview(movieDetail: MovieDetail)
+    func toVideo(movieDetail: MovieDetail)
     func toCastCrew()
 }
 
@@ -34,6 +35,14 @@ struct MovieDetailNavigator: MovieDetailNavigatorType {
         
         if let detailViewController = navigationController.topViewController as? MovieDetailViewController {
             detailViewController.addBottomSheetViewController(overviewViewController)
+        }
+    }
+    
+    func toVideo(movieDetail: MovieDetail) {
+        let videoViewController: VideoViewController = assembler.resolve(movieDetail: movieDetail)
+        
+        if let detailViewController = navigationController.topViewController as? MovieDetailViewController {
+            detailViewController.addTopSheetViewController(videoViewController)
         }
     }
     

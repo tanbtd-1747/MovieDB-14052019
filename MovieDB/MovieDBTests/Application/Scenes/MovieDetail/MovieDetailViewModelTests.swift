@@ -26,6 +26,7 @@ final class MovieDetailViewModelTests: XCTestCase {
     private let loadTrigger = PublishSubject<Void>()
     private let backButtonTrigger = PublishSubject<Void>()
     private let reviewsButtonTrigger = PublishSubject<Void>()
+    private let playButtonTrigger = PublishSubject<Void>()
     private let overviewLabelTapTrigger = PublishSubject<UITapGestureRecognizer>()
     private let selectCastCrewTrigger = PublishSubject<IndexPath>()
 
@@ -42,12 +43,14 @@ final class MovieDetailViewModelTests: XCTestCase {
                                            reviewsButtonTrigger: reviewsButtonTrigger.asDriverOnErrorJustComplete(),
                                            overviewLabelTapTrigger: overviewLabelTapTrigger
                                             .asDriverOnErrorJustComplete(),
+                                           playButtonTrigger: playButtonTrigger.asDriverOnErrorJustComplete(),
                                            selectCastCrewTrigger: selectCastCrewTrigger.asDriverOnErrorJustComplete())
         output = viewModel.transform(input)
         
         output.backButtonTapped.drive().disposed(by: disposeBag)
         output.reviewsButtonTapped.drive().disposed(by: disposeBag)
         output.overviewLabelTapped.drive().disposed(by: disposeBag)
+        output.playButtonTapped.drive().disposed(by: disposeBag)
         output.castCrewSelected.drive().disposed(by: disposeBag)
     }
     
@@ -69,6 +72,13 @@ final class MovieDetailViewModelTests: XCTestCase {
         overviewLabelTapTrigger.onNext(UITapGestureRecognizer())
         
         XCTAssert(navigator.toMovieDetailOverviewCalled)
+    }
+    
+    func test_playButtonTriggerInvoked_toVideo() {
+        loadTrigger.onNext(())
+        playButtonTrigger.onNext(())
+        
+        XCTAssert(navigator.toVideoCalled)
     }
     
     func test_selectCastCrewTriggerInvoked_toCastCrew() {
