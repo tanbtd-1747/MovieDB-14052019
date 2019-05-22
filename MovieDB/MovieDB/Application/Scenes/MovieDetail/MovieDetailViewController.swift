@@ -83,10 +83,8 @@ final class MovieDetailViewController: UIViewController, BindableType {
         output.castCrewSelected
             .drive()
             .disposed(by: rx.disposeBag)
-        output.movieDetail
-            .drive(onNext: { movieDetail in
-                self.bindModel(MovieDetailModel(movieDetail: movieDetail))
-            })
+        output.movieDetailModel
+            .drive(model)
             .disposed(by: rx.disposeBag)
         
         let dataSource = RxCollectionViewSectionedReloadDataSource<Section<CastCrew>>(
@@ -100,37 +98,28 @@ final class MovieDetailViewController: UIViewController, BindableType {
             })
         
         output.castCrewList
-            .map { castCrew in
-                return [Section<CastCrew>(items: castCrew)]
-            }
             .drive(movieCastCrewCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         output.isEmptyCastCrewList
             .drive(movieCastCrewCollectionView.rx.isEmptyData)
             .disposed(by: rx.disposeBag)
     }
-    
-    private func bindModel(_ model: MovieDetailModel?) {
-        if let model = model {
-            model.do {
-                movieBackdropImageView.sd_setImage(with: $0.backdropURL, completed: nil)
-                moviePosterImageView.sd_setImage(with: $0.posterURL, completed: nil)
-                movieTitleLabel.text = $0.title
-                movieRatingView.rating = $0.voteAverage
-                movieRatingView.text = $0.voteAverageString
-                movieLanguageLabel.text = $0.language
-                movieDurationLabel.text = $0.duration
-                movieOverviewLabel.text = $0.overview
+}
+
+// MARK: - Binding Model
+extension MovieDetailViewController {
+    var model: Binder<MovieDetailModel> {
+        return Binder(self) { viewController, movieDetailModel in
+            viewController.do {
+                $0.movieBackdropImageView.sd_setImage(with: movieDetailModel.backdropURL, completed: nil)
+                $0.moviePosterImageView.sd_setImage(with: movieDetailModel.posterURL, completed: nil)
+                $0.movieTitleLabel.text = movieDetailModel.title
+                $0.movieRatingView.rating = movieDetailModel.voteAverage
+                $0.movieRatingView.text = movieDetailModel.voteAverageString
+                $0.movieLanguageLabel.text = movieDetailModel.language
+                $0.movieDurationLabel.text = movieDetailModel.duration
+                $0.movieOverviewLabel.text = movieDetailModel.overview
             }
-        } else {
-            movieBackdropImageView.image = nil
-            moviePosterImageView.image = nil
-            movieTitleLabel.text = ""
-            movieRatingView.rating = 0.0
-            movieRatingView.text = ""
-            movieLanguageLabel.text = ""
-            movieDurationLabel.text = ""
-            movieOverviewLabel.text = ""
         }
     }
 }

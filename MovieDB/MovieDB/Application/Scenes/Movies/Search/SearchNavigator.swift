@@ -9,7 +9,7 @@
 protocol SearchNavigatorType {
     func toSearch()
     func toCancel()
-    func toMovieDetail()
+    func toMovieDetail(movie: Movie)
 }
 
 struct SearchNavigator: SearchNavigatorType {
@@ -21,12 +21,13 @@ struct SearchNavigator: SearchNavigatorType {
         navigationController.present(vc, animated: true, completion: nil)
     }
     
-    func toMovieDetail() {
-        let viewController: MovieDetailViewController = assembler.resolve(navigationController: navigationController)
+    func toMovieDetail(movie: Movie) {
+        let viewController: MovieDetailViewController = assembler.resolve(navigationController: navigationController,
+                                                                          movie: movie)
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func toCancel(){
+    func toCancel() {
         navigationController.dismiss(animated: true, completion: nil)
     }
 }

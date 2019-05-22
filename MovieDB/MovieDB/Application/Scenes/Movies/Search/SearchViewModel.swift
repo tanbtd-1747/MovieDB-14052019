@@ -18,7 +18,6 @@ extension SearchViewModel: ViewModelType {
         let editTrigger: Driver<String>
         let selectedTrigger: Driver<IndexPath>
         let rejectTrigger: Driver<Void>
-        let toSearchResultTrigger: Driver<String>
         let selectMovieTrigger: Driver<IndexPath>
     }
     
@@ -27,7 +26,6 @@ extension SearchViewModel: ViewModelType {
         let reject: Driver<Void>
         let error: Driver<Error>
         let loading: Driver<Bool>
-        let toSearchResult: Driver<Void>
         let selectedMovie: Driver<Void>
     }
     
@@ -51,12 +49,6 @@ extension SearchViewModel: ViewModelType {
                     .asDriverOnErrorJustComplete()
             }
         
-        let toSearchResult = input.toSearchResultTrigger
-            .do(onNext: { keyword in
-                self.navigator.toMovieDetail()
-            })
-            .mapToVoid()
-        
         let selectedMovie = input.selectMovieTrigger
             .withLatestFrom(movies) {
                 return ($0, $1)
@@ -65,7 +57,7 @@ extension SearchViewModel: ViewModelType {
                 return moviesList[indexPath.row]
             }
             .do(onNext: { movie in
-                self.navigator.toMovieDetail()
+                self.navigator.toMovieDetail(movie: movie)
             })
             .mapToVoid()
         
@@ -73,7 +65,6 @@ extension SearchViewModel: ViewModelType {
                       reject: reject,
                       error: errorTracker.asDriver(),
                       loading: activityIndicator.asDriver(),
-                      toSearchResult: toSearchResult,
                       selectedMovie: selectedMovie)
     }
 }

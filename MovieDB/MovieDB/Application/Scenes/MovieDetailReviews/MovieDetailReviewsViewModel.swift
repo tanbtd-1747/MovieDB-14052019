@@ -16,7 +16,7 @@ extension MovieDetailReviewsViewModel: ViewModelType {
     }
     
     struct Output {
-        let reviewsList: Driver<[Review]>
+        let reviewsListSection: Driver<[Section<Review>]>
         let isEmptyReviewsList: Driver<Bool>
     }
     
@@ -25,13 +25,18 @@ extension MovieDetailReviewsViewModel: ViewModelType {
             .map {
                 self.movieDetail.reviews
             }
+            
+        let reviewsListSection = reviewsList
+            .map { reviews in
+                return [Section<Review>(items: reviews)]
+            }
         
         let isEmptyReviewsList = checkIfDataIsEmpty(fetchItemsTrigger: input.loadTrigger,
                                                     loadTrigger: Driver.just(false),
                                                     items: reviewsList)
         
         return Output(
-            reviewsList: reviewsList,
+            reviewsListSection: reviewsListSection,
             isEmptyReviewsList: isEmptyReviewsList
         )
     }

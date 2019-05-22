@@ -21,6 +21,6 @@ final class SearchRepository: SearchRepositoryType {
                     throw APIInvalidResponseError()
                 }
                 return movies
-        }
+            }
     }
 }

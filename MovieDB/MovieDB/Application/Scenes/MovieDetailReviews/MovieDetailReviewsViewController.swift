@@ -60,10 +60,7 @@ final class MovieDetailReviewsViewController: UIViewController, BindableType {
                 return cell
             })
         
-        output.reviewsList
-            .map { reviews in
-                return [Section<Review>(items: reviews)]
-            }
+        output.reviewsListSection
             .drive(reviewsTableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
         output.isEmptyReviewsList

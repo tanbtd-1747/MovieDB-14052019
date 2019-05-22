@@ -7,7 +7,7 @@
 //
 
 protocol SearchUseCaseType {
-    func getSearchList(page: Int, searchText: String) ->  Observable<[Movie]>
+    func getSearchList(page: Int, searchText: String) -> Observable<[Movie]>
 }
 
 struct SearchUseCase: SearchUseCaseType {

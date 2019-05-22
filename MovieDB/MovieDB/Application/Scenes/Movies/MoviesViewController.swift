@@ -76,7 +76,7 @@ final class MoviesViewController: UIViewController, BindableType {
                                                           cellType: MoviesCollectionViewCell.self)
                     .then {
                         $0.bindViewModel(MovieViewModel(movie: result))
-                }
+                    }
             }
             .disposed(by: rx.disposeBag)
         

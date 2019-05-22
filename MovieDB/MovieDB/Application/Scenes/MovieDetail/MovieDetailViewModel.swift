@@ -26,10 +26,10 @@ extension MovieDetailViewModel: ViewModelType {
         let reviewsButtonTapped: Driver<Void>
         let overviewLabelTapped: Driver<Void>
         let castCrewSelected: Driver<Void>
-        let movieDetail: Driver<MovieDetail>
+        let movieDetailModel: Driver<MovieDetailModel>
         let error: Driver<Error>
         let isLoading: Driver<Bool>
-        let castCrewList: Driver<[CastCrew]>
+        let castCrewList: Driver<[Section<CastCrew>]>
         let isEmptyCastCrewList: Driver<Bool>
     }
     
@@ -64,6 +64,11 @@ extension MovieDetailViewModel: ViewModelType {
             })
             .mapToVoid()
         
+        let movieDetailModel = movieDetail
+            .map {
+                MovieDetailModel(movieDetail: $0)
+            }
+        
         let castCrewSelected = input.selectCastCrewTrigger
             .do(onNext: { _ in
                 self.navigator.toCastCrew()
@@ -76,6 +81,9 @@ extension MovieDetailViewModel: ViewModelType {
                     return !castCrew.profilePath.isEmpty
                 }
             }
+            .map { castCrew in
+                return [Section<CastCrew>(items: castCrew)]
+            }
         
         let isEmptyCastCrewList = checkIfDataIsEmpty(fetchItemsTrigger: input.loadTrigger,
                                                      loadTrigger: activityIndicator.asDriver(),
@@ -86,7 +94,7 @@ extension MovieDetailViewModel: ViewModelType {
             reviewsButtonTapped: reviewsButtonTapped,
             overviewLabelTapped: overviewLabelTapped,
             castCrewSelected: castCrewSelected,
-            movieDetail: movieDetail,
+            movieDetailModel: movieDetailModel,
             error: errorTracker.asDriver(),
             isLoading: activityIndicator.asDriver(),
             castCrewList: castCrewList,

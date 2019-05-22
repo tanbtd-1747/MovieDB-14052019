@@ -8,14 +8,17 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, BindableType, UITextFieldDelegate {
+final class SearchViewController: UIViewController, BindableType, UITextFieldDelegate {
     @IBOutlet weak var searchUITextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rejectButton: UIButton!
     
     var viewModel: SearchViewModel!
-    fileprivate let toSearchResultTrigger = PublishSubject<String>()
     fileprivate let selectedTrigger = PublishSubject<IndexPath>()
+    
+    deinit {
+        logDeinit()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +50,6 @@ class SearchViewController: UIViewController, BindableType, UITextFieldDelegate 
         let input = SearchViewModel.Input(editTrigger: searchUITextField.rx.text.orEmpty.asDriver(),
                                           selectedTrigger: selectedTrigger.asDriverOnErrorJustComplete(),
                                           rejectTrigger: rejectButton.rx.tap.asDriver(),
-                                          toSearchResultTrigger: toSearchResultTrigger.asDriverOnErrorJustComplete(),
                                           selectMovieTrigger: tableView.rx.itemSelected.asDriver())
         let output = viewModel.transform(input)
         
@@ -79,9 +81,6 @@ class SearchViewController: UIViewController, BindableType, UITextFieldDelegate 
             .drive()
             .disposed(by: rx.disposeBag)
         
-        output.toSearchResult
-            .drive()
-            .disposed(by: rx.disposeBag)
         output.selectedMovie
             .drive()
             .disposed(by: rx.disposeBag)
@@ -107,7 +106,7 @@ extension MainViewController: UITableViewDelegate {
 
 extension SearchViewController {
     var errorBinder: Binder<Error> {
-        return Binder(self) { vc, error in
+        return Binder(self) { vc, _ in
             vc.searchUITextField.resignFirstResponder()
         }
     }
