@@ -38,6 +38,11 @@ final class MoviesViewController: UIViewController, BindableType {
         cofigView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideTabBar(false)
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         navigationController?.isNavigationBarHidden = true
