@@ -47,7 +47,7 @@ struct MovieDetailNavigator: MovieDetailNavigatorType {
     }
     
     func toCastCrew() {
-        let viewController: CastCrewViewController = assembler.resolve()
+        let viewController: CastCrewViewController = assembler.resolve(navigationController: navigationController)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

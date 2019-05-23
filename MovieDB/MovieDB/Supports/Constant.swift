@@ -9,4 +9,5 @@
 enum Constant {
     static let categories: [CategoryType] = [.popular, .nowPlaying, .upcoming]
     static let categoryTitles = ["Popular", "Now Playing", "Upcoming"]
+    static let creditTitles = ["Acting", "Production"]
 }
