@@ -51,6 +51,7 @@ final class MovieDetailViewModelTests: XCTestCase {
         output.reviewsButtonTapped.drive().disposed(by: disposeBag)
         output.overviewLabelTapped.drive().disposed(by: disposeBag)
         output.playButtonTapped.drive().disposed(by: disposeBag)
+        output.castCrewList.drive().disposed(by: disposeBag)
         output.castCrewSelected.drive().disposed(by: disposeBag)
     }
     

@@ -78,21 +78,29 @@ extension MovieDetailViewModel: ViewModelType {
                 MovieDetailModel(movieDetail: $0)
             }
         
-        let castCrewSelected = input.selectCastCrewTrigger
-            .do(onNext: { _ in
-                self.navigator.toCastCrew()
-            })
-            .mapToVoid()
-        
         let castCrewList = movieDetail
             .map {
                 ($0.casts + $0.crews).filter { castCrew in
                     return !castCrew.profilePath.isEmpty
                 }
             }
+            
+        let castCrewListSection = castCrewList
             .map { castCrew in
                 return [Section<CastCrew>(items: castCrew)]
             }
+        
+        let castCrewSelected = input.selectCastCrewTrigger
+            .withLatestFrom(castCrewList) {
+                return ($0, $1)
+            }
+            .map { indexPath, castCrewList in
+                return castCrewList[indexPath.row]
+            }
+            .do(onNext: { castCrew in
+                self.navigator.toCastCrew(castCrew: castCrew)
+            })
+            .mapToVoid()
         
         let isEmptyCastCrewList = checkIfDataIsEmpty(fetchItemsTrigger: input.loadTrigger,
                                                      loadTrigger: activityIndicator.asDriver(),
@@ -107,7 +115,7 @@ extension MovieDetailViewModel: ViewModelType {
             movieDetailModel: movieDetailModel,
             error: errorTracker.asDriver(),
             isLoading: activityIndicator.asDriver(),
-            castCrewList: castCrewList,
+            castCrewList: castCrewListSection,
             isEmptyCastCrewList: isEmptyCastCrewList
         )
     }

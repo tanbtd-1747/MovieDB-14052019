@@ -21,4 +21,12 @@ final class CreditCollectionViewCell: UICollectionViewCell, NibReusable {
         shadowView.makeRoundedAndShadowed()
         creditImageView.makeRounded()
     }
+    
+    func bindModel(_ model: CreditModel?) {
+        if let model = model {
+            creditImageView.sd_setImage(with: model.posterURL, completed: nil)
+        } else {
+            creditImageView.image = nil
+        }
+    }
 }
