@@ -28,6 +28,11 @@ final class FavoritesViewController: UIViewController, BindableType {
         hideNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideTabBar(false)
+    }
+    
     deinit {
         logDeinit()
     }

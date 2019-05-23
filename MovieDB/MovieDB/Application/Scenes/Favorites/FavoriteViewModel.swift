@@ -9,6 +9,10 @@
 struct FavoriteViewModel {
     let favorite: Favorite
     
+    var id: String {
+        return favorite.id
+    }
+    
     var title: String {
         return favorite.title
     }

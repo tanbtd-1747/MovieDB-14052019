@@ -7,14 +7,17 @@
 //
 
 protocol FavoritesNavigatorType {
-    func toFavoritesDetail(favorites: Favorite)
+    func toFavoritesDetail(movies: Movie)
 }
 
 struct FavoritesListNavigator: FavoritesNavigatorType {
     unowned let assembler: Assembler
     unowned let navigationController: UINavigationController
     
-    func toFavoritesDetail(favorites: Favorite) {
-        
+    func toFavoritesDetail(movies: Movie) {
+        let viewController: MovieDetailViewController = assembler.resolve(navigationController: navigationController,
+                                                                          movie: movies)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
+

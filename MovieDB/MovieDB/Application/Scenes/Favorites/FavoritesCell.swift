@@ -16,8 +16,7 @@ class FavoritesCell: UITableViewCell, NibReusable {
     func bindViewModel(_ viewModel: FavoriteViewModel?) {
         if let viewModel = viewModel {
             title.text = viewModel.title
-            posterPath.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.posterPath),
-                                         completed: nil)
+            posterPath.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.posterPath),completed: nil)
         } else {
             title.text = ""
             posterPath.image = nil

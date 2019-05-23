@@ -16,7 +16,7 @@ struct Favorite {
 extension Favorite {
     init() {
         self.init(
-            id: UUID().uuidString,
+            id: "",
             title: "",
             posterPath: ""
         )
