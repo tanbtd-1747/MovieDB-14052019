@@ -11,16 +11,25 @@ import Reusable
 import CoreData
 
 final class FavoritesViewController: UIViewController, BindableType {
-    deinit {
-        logDeinit()
-    }
     
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
-     var viewModel: FavoritesViewModel!
+    
+     // MARK: - Properties
+    var viewModel: FavoritesViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
             configView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        hideNavigationBar()
+    }
+    
+    deinit {
+        logDeinit()
     }
 
     // MARK: - Methods
@@ -53,7 +62,7 @@ final class FavoritesViewController: UIViewController, BindableType {
                     cellType: FavoritesCell.self)
                     .then {
                         $0.bindViewModel(FavoriteViewModel(favorite: favorite))
-                }
+                    }
             }
             .disposed(by: rx.disposeBag)
         output.error

@@ -30,7 +30,7 @@ protocol CoreDataModel {
 extension CoreDataRepository where
     Self.EntityType: NSManagedObject,
     Self.ModelType: CoreDataModel,
-Self.ModelType.IDType: CVarArg {
+    Self.ModelType.IDType: CVarArg {
     
     func all(sortTerm: String? = nil,
              acending: Bool = true,
