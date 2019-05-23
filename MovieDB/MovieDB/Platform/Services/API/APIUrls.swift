@@ -15,6 +15,7 @@ extension API {
         static let avatarUrl = "https://secure.gravatar.com/avatar/"
 
         static let moviesListURL = baseURL + "/movie/"
+        static let personURL = baseURL + "/person/"
         static let searchMovies = baseURL + "/search/movie"
     }
 }

@@ -11,7 +11,7 @@ protocol MovieDetailNavigatorType {
     func toMovieDetailReviews(movieDetail: MovieDetail)
     func toMovieDetailOverview(movieDetail: MovieDetail)
     func toVideo(movieDetail: MovieDetail)
-    func toCastCrew()
+    func toCastCrew(castCrew: CastCrew)
 }
 
 struct MovieDetailNavigator: MovieDetailNavigatorType {
@@ -46,8 +46,9 @@ struct MovieDetailNavigator: MovieDetailNavigatorType {
         }
     }
     
-    func toCastCrew() {
-        let viewController: CastCrewViewController = assembler.resolve(navigationController: navigationController)
+    func toCastCrew(castCrew: CastCrew) {
+        let viewController: CastCrewViewController = assembler.resolve(navigationController: navigationController,
+                                                                       castCrew: castCrew)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

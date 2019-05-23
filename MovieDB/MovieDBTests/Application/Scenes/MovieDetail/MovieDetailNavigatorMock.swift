@@ -35,7 +35,7 @@ final class MovieDetailNavigatorMock: MovieDetailNavigatorType {
     
     var toCastCrewCalled = false
     
-    func toCastCrew() {
+    func toCastCrew(castCrew: CastCrew) {
         toCastCrewCalled = true
     }
 }

@@ -7,23 +7,24 @@
 //
 
 protocol CastCrewAssembler {
-    func resolve(navigationController: UINavigationController) -> CastCrewViewController
-    func resolve(navigationController: UINavigationController) -> CastCrewViewModel
+    func resolve(navigationController: UINavigationController, castCrew: CastCrew) -> CastCrewViewController
+    func resolve(navigationController: UINavigationController, castCrew: CastCrew) -> CastCrewViewModel
     func resolve(navigationController: UINavigationController) -> CastCrewNavigatorType
     func resolve() -> CastCrewUseCaseType
 }
 
 extension CastCrewAssembler {
-    func resolve(navigationController: UINavigationController) -> CastCrewViewController {
+    func resolve(navigationController: UINavigationController, castCrew: CastCrew) -> CastCrewViewController {
         let viewController = CastCrewViewController.instantiate()
-        let viewModel: CastCrewViewModel = resolve(navigationController: navigationController)
+        let viewModel: CastCrewViewModel = resolve(navigationController: navigationController, castCrew: castCrew)
         viewController.bindViewModel(to: viewModel)
         return viewController
     }
     
-    func resolve(navigationController: UINavigationController) -> CastCrewViewModel {
+    func resolve(navigationController: UINavigationController, castCrew: CastCrew) -> CastCrewViewModel {
         return CastCrewViewModel(navigator: resolve(navigationController: navigationController),
-                                 useCase: resolve())
+                                 useCase: resolve(),
+                                 castCrew: castCrew)
     }
 }
 
@@ -33,6 +34,6 @@ extension CastCrewAssembler where Self: DefaultAssembler {
     }
     
     func resolve() -> CastCrewUseCaseType {
-        return CastCrewUseCase()
+        return CastCrewUseCase(repository: resolve())
     }
 }

@@ -37,7 +37,7 @@ final class CastCrewViewController: UIViewController, BindableType {
             $0.defaultTextFont = UIFont.avenirBook(size: .smallFontSize)
             $0.selectedTextFont = UIFont.avenirBook(size: .mediumFontSize)
             $0.allowChangeThumbWidth = false
-            $0.itemTitles = [String](repeating: "", count: Constant.creditTitles.count)
+            $0.itemTitles = [String](repeating: " ", count: Constant.creditTitles.count)
         }
         
         castCrewCreditsCollectionView.do {
@@ -55,7 +55,60 @@ final class CastCrewViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
+        let changeListTrigger = castCrewSegmentedControl.rx.selectedSegmentIndex
+            .asDriverOnErrorJustComplete()
         
+        let input = CastCrewViewModel.Input(loadTrigger: Driver.just(()),
+                                            changeListTrigger: changeListTrigger,
+                                            backButtonTrigger: backButton.rx.tap.asDriver(),
+                                            selectMovieTrigger: castCrewCreditsCollectionView.rx.itemSelected
+                                                .asDriver())
+        let output = viewModel.transform(input)
+        
+        output.error
+            .drive(rx.error)
+            .disposed(by: rx.disposeBag)
+        output.loading
+            .drive(rx.isLoading)
+            .disposed(by: rx.disposeBag)
+        output.backButtonTapped
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.castCrewDetailModel
+            .drive(model)
+            .disposed(by: rx.disposeBag)
+        output.isEmptyData
+            .drive(castCrewCreditsCollectionView.rx.isEmptyData)
+            .disposed(by: rx.disposeBag)
+        output.scrollToTop
+            .drive()
+            .disposed(by: rx.disposeBag)
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<Section<Movie>>(
+            configureCell: { _, collectionView, indexPath, movie in
+                let cell = collectionView.dequeueReusableCell(for: indexPath,
+                                                              cellType: CreditCollectionViewCell.self)
+                    .then {
+                        $0.bindModel(CreditModel(movie: movie))
+                    }
+                return cell
+            })
+        
+        output.moviesList
+            .drive(castCrewCreditsCollectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+        output.selectedMovie
+            .drive()
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+extension CastCrewViewController {
+    var model: Binder<CastCrewDetailModel> {
+        return Binder(self) { viewController, castCrewDetailModel in
+            viewController.castCrewImageView.sd_setImage(with: castCrewDetailModel.profileURL, completed: nil)
+            viewController.castCrewNameLabel.text = castCrewDetailModel.name
+        }
     }
 }
 
