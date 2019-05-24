@@ -60,7 +60,7 @@ final class SearchViewController: UIViewController, BindableType, UITextFieldDel
                     for: indexPath,
                     cellType: SearchTableViewCell.self)
                     .then {
-                        $0.bindViewModel(MovieViewModel(movie: content))
+                        $0.bindViewModel(MovieModel(movie: content))
                     }
             }
             .disposed(by: rx.disposeBag)

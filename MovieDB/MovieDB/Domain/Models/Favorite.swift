@@ -6,7 +6,6 @@
 //  Copyright © 2019 tranductanb. All rights reserved.
 //
 
-
 struct Favorite {
     var id: String
     var title: String

@@ -38,6 +38,6 @@ struct MovieDetailModel: Then {
     }
     
     var backdropURL: URL? {
-        return URL(string: API.Urls.mediaBackdropPath + movieDetail.backdropPath)
+        return URL(string: API.Urls.backdropUrl + movieDetail.backdropPath)
     }
 }

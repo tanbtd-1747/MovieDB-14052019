@@ -27,10 +27,15 @@ extension MoviesViewModel: ViewModelType {
         let refreshing: Driver<Bool>
         let loadingMore: Driver<Bool>
         let fetchItems: Driver<Void>
-        let movieList: Driver<[Movie]>
+        let movieList: Driver<[Section<CellType>]>
         let selectedMovie: Driver<Void>
         let isEmptyData: Driver<Bool>
         let toSearch: Driver<Void>
+    }
+    
+    enum CellType {
+        case main(Movie)
+        case alternate(Movie)
     }
     
     func transform(_ input: Input) -> Output {
@@ -48,18 +53,6 @@ extension MoviesViewModel: ViewModelType {
             .map { $0.items.map { $0 } }
             .asDriverOnErrorJustComplete()
         
-        let selectedMovie = input.selectMovieTrigger
-            .withLatestFrom(movieList) {
-                return ($0, $1)
-            }
-            .map { indexPath, repoList in
-                return repoList[indexPath.row]
-            }
-            .do(onNext: { movie in
-                self.navigator.toMoviesDetail(movie: movie)
-            })
-            .mapToVoid()
-        
         let isEmptyData = checkIfDataIsEmpty(fetchItemsTrigger: fetchItems,
                                              loadTrigger: Driver.merge(loading, refreshing),
                                              items: movieList)
@@ -67,17 +60,51 @@ extension MoviesViewModel: ViewModelType {
             .do(onNext: { self.navigator.toSearch()
             })
         
+        let cells = movieList
+            .map { movies -> [CellType] in
+                var cells = [CellType]()
+                let mainCells = movies.map { CellType.main($0) }
+                let alternateCells = movies.map { CellType.alternate($0) }
+                for i in 0..<mainCells.count {
+                    cells.append(alternateCells[i])
+                    cells.append(mainCells[i])
+                }
+                return cells
+            }
+        
+        let moviesListSection = cells
+            .map {
+                return [Section(items: $0)]
+            }
+        
+        let selectedMovie = input.selectMovieTrigger
+            .withLatestFrom(cells) {
+                return ($0, $1)
+            }
+            .map { indexPath, cells in
+                let cell = cells[indexPath.row]
+                switch cell {
+                case .main(let movie):
+                    return movie
+                case .alternate(let movie):
+                    return movie
+                }
+            }
+            .do(onNext: { movie in
+                self.navigator.toMoviesDetail(movie: movie)
+            })
+            .mapToVoid()
+        
         return Output(
             error: loadError,
             loading: loading,
             refreshing: refreshing,
             loadingMore: loadingMore,
             fetchItems: fetchItems,
-            movieList: movieList,
+            movieList: moviesListSection,
             selectedMovie: selectedMovie,
             isEmptyData: isEmptyData,
             toSearch: toSearch
         )
     }
 }
-

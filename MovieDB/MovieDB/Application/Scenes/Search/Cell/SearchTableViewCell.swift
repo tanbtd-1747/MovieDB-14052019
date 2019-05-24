@@ -18,10 +18,10 @@ final class SearchTableViewCell: UITableViewCell, NibReusable {
         super.prepareForReuse()
     }
     
-    func bindViewModel(_ viewModel: MovieViewModel?) {
+    func bindViewModel(_ viewModel: MovieModel?) {
         if let viewModel = viewModel {
             titleLable.text = viewModel.title
-            posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath),
+            posterImageView?.sd_setImage(with: viewModel.backdropURL,
                                          completed: nil)
         } else {
             titleLable.text = ""
