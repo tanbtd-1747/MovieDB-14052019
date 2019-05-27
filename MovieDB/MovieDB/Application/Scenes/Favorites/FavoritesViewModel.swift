@@ -47,9 +47,10 @@ extension FavoritesViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
         
         let selectedFavorites = input.selectFavoritesTrigger
-            .withLatestFrom(favoritesList) {indexPath, favorites in
-                return favorites[indexPath.row] }
-            .map{ (favorite) in
+            .withLatestFrom(favoritesList) { indexPath, favorites in
+                return favorites[indexPath.row]
+            }
+            .map { (favorite) in
                 return Movie(id: Int(favorite.id)!)
             }
             .do(onNext: { movie in

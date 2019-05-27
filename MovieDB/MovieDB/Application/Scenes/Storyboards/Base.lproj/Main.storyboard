@@ -18,9 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IJd-iK-dHb" customClass="LoadMoreCollectionView" customModule="MGLoadMore">
-                                <rect key="frame" x="0.0" y="119" width="414" height="743"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IJd-iK-dHb" customClass="LoadMoreCollectionView" customModule="MGLoadMore">
+                                <rect key="frame" x="20" y="105.5" width="374" height="746.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eax-bQ-fKU">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -30,22 +30,31 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIC-7k-d6F">
-                                <rect key="frame" x="359" y="74" width="25" height="25"/>
+                                <rect key="frame" x="372" y="73.5" width="22" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="2Zm-7Y-irU"/>
-                                    <constraint firstAttribute="width" constant="25" id="qTi-8Q-D8B"/>
+                                    <constraint firstAttribute="height" constant="22" id="2Zm-7Y-irU"/>
+                                    <constraint firstAttribute="width" constant="22" id="qTi-8Q-D8B"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="icon-search"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="km2-Nw-Idq">
+                                <rect key="frame" x="20" y="64" width="115" height="41"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IJd-iK-dHb" firstAttribute="top" secondItem="lIC-7k-d6F" secondAttribute="bottom" constant="20" id="33O-lM-lD4"/>
-                            <constraint firstItem="lIC-7k-d6F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Q4G-d0-3md"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lIC-7k-d6F" secondAttribute="trailing" constant="30" id="TKW-o8-3PS"/>
-                            <constraint firstItem="IJd-iK-dHb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="edq-In-sdf"/>
-                            <constraint firstItem="IJd-iK-dHb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jV7-lW-jJ8"/>
-                            <constraint firstItem="IJd-iK-dHb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yUY-RX-F68"/>
+                            <constraint firstItem="IJd-iK-dHb" firstAttribute="top" secondItem="lIC-7k-d6F" secondAttribute="bottom" constant="10" id="33O-lM-lD4"/>
+                            <constraint firstItem="lIC-7k-d6F" firstAttribute="leading" relation="lessThanOrEqual" secondItem="km2-Nw-Idq" secondAttribute="trailing" constant="237" id="Fnj-6J-CKq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IJd-iK-dHb" secondAttribute="trailing" constant="20" id="S6E-Iv-L3u"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lIC-7k-d6F" secondAttribute="trailing" constant="20" id="TKW-o8-3PS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IJd-iK-dHb" secondAttribute="bottom" constant="10" id="ZWv-8T-b24"/>
+                            <constraint firstItem="lIC-7k-d6F" firstAttribute="centerY" secondItem="km2-Nw-Idq" secondAttribute="centerY" id="gOJ-JI-kXK"/>
+                            <constraint firstItem="IJd-iK-dHb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="jV7-lW-jJ8"/>
+                            <constraint firstItem="km2-Nw-Idq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="jVP-E8-HNJ"/>
+                            <constraint firstItem="km2-Nw-Idq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="y2L-cS-hU3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

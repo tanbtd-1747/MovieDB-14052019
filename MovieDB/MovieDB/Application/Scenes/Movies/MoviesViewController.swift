@@ -10,32 +10,20 @@ import UIKit
 import Foundation
 
 final class MoviesViewController: UIViewController, BindableType {
+    @IBOutlet weak var collectionView: LoadMoreCollectionView!
+    @IBOutlet weak var searchButton: UIButton!
+    
+    private var layoutOption = LayoutOption()
+
+    var viewModel: MoviesViewModel!
+    
     deinit {
         logDeinit()
     }
     
-    @IBOutlet weak var collectionView: LoadMoreCollectionView!
-    @IBOutlet weak var searchButton: UIButton!
-    
-    struct Options {
-        var itemSpacing: CGFloat = 8
-        var lineSpacing: CGFloat = 8
-        var itemsPerRow: Int = 2
-        var sectionInsets = UIEdgeInsets(
-            top: 10.0,
-            left: 10.0,
-            bottom: 10.0,
-            right: 10.0
-        )
-    }
-    
-    private var options = Options()
-
-    var viewModel: MoviesViewModel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        cofigView()
+        configSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,14 +36,12 @@ final class MoviesViewController: UIViewController, BindableType {
         navigationController?.isNavigationBarHidden = true
     }
     
-    private func cofigView() {
+    private func configSubviews() {
         collectionView.do {
-            $0.register(cellType: MoviesCollectionViewCell.self)
+            $0.register(cellType: MovieCollectionViewCell.self)
+            $0.register(cellType: AlternateMovieCollectionViewCell.self)
+            $0.delegate = self
         }
-        
-        collectionView.rx
-            .setDelegate(self)
-            .disposed(by: rx.disposeBag)
     }
     
     func bindViewModel() {
@@ -74,16 +60,6 @@ final class MoviesViewController: UIViewController, BindableType {
         )
         
         let output = viewModel.transform(input)
-        
-        output.movieList
-            .drive(collectionView.rx.items) { collectionView, index, result in
-                return collectionView.dequeueReusableCell(for: IndexPath(row: index, section: 0),
-                                                          cellType: MoviesCollectionViewCell.self)
-                    .then {
-                        $0.bindViewModel(MovieViewModel(movie: result))
-                    }
-            }
-            .disposed(by: rx.disposeBag)
         
         output.error
             .drive(rx.error)
@@ -109,39 +85,74 @@ final class MoviesViewController: UIViewController, BindableType {
         output.toSearch
             .drive()
             .disposed(by: rx.disposeBag)
+        
+        let dataSource = RxCollectionViewSectionedReloadDataSource<Section<MoviesViewModel.CellType>>(
+            configureCell: { _, collectionView, indexPath, cellType in
+                switch cellType {
+                case .main(let movie):
+                    return collectionView.dequeueReusableCell(for: indexPath,
+                                                              cellType: MovieCollectionViewCell.self)
+                        .then {
+                            $0.bindViewModel(MovieViewModel(movie: movie))
+                        }
+                case .alternate(let movie):
+                    return collectionView.dequeueReusableCell(for: indexPath,
+                                                              cellType: AlternateMovieCollectionViewCell.self)
+                        .then {
+                            $0.bindViewModel(MovieViewModel(movie: movie))
+                        }
+                }
+            })
+        
+        output.movieList
+            .drive(collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension MoviesViewController: UICollectionViewDelegateFlowLayout {
+    struct LayoutOption {
+        var topInset: CGFloat = 10
+        var bottomInset: CGFloat = 10
+        var leftInset: CGFloat = 10
+        var rightInset: CGFloat = 10
+        var sectionInsets: UIEdgeInsets {
+            return UIEdgeInsets(top: topInset,
+                                left: leftInset,
+                                bottom: bottomInset,
+                                right: rightInset)
+        }
+        var lineSpacing: CGFloat = 20
+        var itemSpacing: CGFloat = 10
+        var numColumns = 1
+        var ratio: CGFloat = 0.6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return layoutOption.sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return layoutOption.itemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return layoutOption.lineSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var width = collectionView.bounds.width
+        width -= CGFloat(layoutOption.numColumns - 1) * layoutOption.itemSpacing
+        width -= layoutOption.leftInset + layoutOption.rightInset
+        width /= CGFloat(layoutOption.numColumns)
+        let height = layoutOption.ratio * width
+        
+        return CGSize(width: width, height: height)
     }
 }
 
 // MARK: - StotyboardSceneBased
 extension MoviesViewController: StoryboardSceneBased {
     static var sceneStoryboard = Storyboards.main
-}
-
-// MARK: - UICollectionViewDelegate
-extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 10, height: view.frame.width / 2)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return options.sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return options.lineSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return options.itemSpacing
-    }
 }

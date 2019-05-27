@@ -9,8 +9,7 @@
 import UIKit
 import SDWebImage
 
-final class MoviesCollectionViewCell: UICollectionViewCell, NibReusable {
-
+final class MovieCollectionViewCell: UICollectionViewCell, NibReusable {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var backdropImageView: UIImageView!
@@ -30,19 +29,19 @@ final class MoviesCollectionViewCell: UICollectionViewCell, NibReusable {
         contentViewBig.layer.cornerRadius = 5.0
     }
     
-    func bindViewModel(_ viewModel: MovieViewModel?) {
-        if let viewModel = viewModel {
-            textLabel.text = viewModel.title
-            posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath),
-                                         completed: nil)
-            backdropImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.posterPath),
-                                           completed: nil)
-            
+    func bindModel(_ model: MovieModel?) {
+        if let model = model {
+            model.do {
+                textLabel.text = $0.title
+                posterImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.backdropPath),
+                                             completed: nil)
+                backdropImageView?.sd_setImage(with: URL(string: API.Urls.mediaBackdropPath + viewModel.posterPath),
+                                               completed: nil)
+            }
         } else {
             textLabel.text = ""
             posterImageView.image = nil
             backdropImageView.image = nil
         }
     }
-
 }

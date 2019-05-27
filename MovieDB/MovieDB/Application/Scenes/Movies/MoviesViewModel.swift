@@ -27,10 +27,15 @@ extension MoviesViewModel: ViewModelType {
         let refreshing: Driver<Bool>
         let loadingMore: Driver<Bool>
         let fetchItems: Driver<Void>
-        let movieList: Driver<[Movie]>
+        let movieList: Driver<[Section<CellType>]>
         let selectedMovie: Driver<Void>
         let isEmptyData: Driver<Bool>
         let toSearch: Driver<Void>
+    }
+    
+    enum CellType {
+        case main(Movie)
+        case alternate(Movie)
     }
     
     func transform(_ input: Input) -> Output {
@@ -48,24 +53,33 @@ extension MoviesViewModel: ViewModelType {
             .map { $0.items.map { $0 } }
             .asDriverOnErrorJustComplete()
         
-        let selectedMovie = input.selectMovieTrigger
-            .withLatestFrom(movieList) {
-                return ($0, $1)
+        let isEmptyData = checkIfDataIsEmpty(fetchItemsTrigger: fetchItems,
+                                             loadTrigger: Driver.merge(loading, refreshing),
+                                             items: movieList)
+        let toSearch = input.toSearchTrigger
+            .do(onNext: {
+                self.navigator.toSearch()
+            })
+        
+        let sections = movieList
+            .map { (movies: [Movie]) -> [Section<CellType>] in
+                self.configDataSource(from: movies)
             }
-            .map { indexPath, repoList in
-                return repoList[indexPath.row]
+        
+        let selectedMovie = input.selectMovieTrigger
+            .withLatestFrom(sections) { $1[$0.section].items[$0.row] }
+            .map { cell in
+                switch cell {
+                case .main(let movie):
+                    return movie
+                case .alternate(let movie):
+                    return movie
+                }
             }
             .do(onNext: { movie in
                 self.navigator.toMoviesDetail(movie: movie)
             })
             .mapToVoid()
-        
-        let isEmptyData = checkIfDataIsEmpty(fetchItemsTrigger: fetchItems,
-                                             loadTrigger: Driver.merge(loading, refreshing),
-                                             items: movieList)
-        let toSearch = input.toSearchTrigger
-            .do(onNext: { self.navigator.toSearch()
-            })
         
         return Output(
             error: loadError,
@@ -73,11 +87,22 @@ extension MoviesViewModel: ViewModelType {
             refreshing: refreshing,
             loadingMore: loadingMore,
             fetchItems: fetchItems,
-            movieList: movieList,
+            movieList: sections,
             selectedMovie: selectedMovie,
             isEmptyData: isEmptyData,
             toSearch: toSearch
         )
     }
+    
+    private func configDataSource(from movies: [Movie]) -> [Section<CellType>] {
+        let mainCells = movies.map { CellType.main($0) }
+        let alternateCells = movies.map { CellType.alternate($0) }
+        
+        let numMovies = movies.count
+        let cells = mainCells[0..<numMovies / 2] + alternateCells[numMovies / 2..<numMovies]
+        
+        let sections = [Section<CellType>(items: cells.shuffled())]
+        
+        return sections
+    }
 }
-
