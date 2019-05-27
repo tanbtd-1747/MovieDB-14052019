@@ -35,6 +35,19 @@ extension Movie {
             voteAverage: 0
         )
     }
+    
+    init(id: Int) {
+        self.init(id: id,
+                  title: "",
+                  genres: [],
+                  genreIds: [],
+                  overview: "",
+                  posterPath: "",
+                  backdropPath: "",
+                  releaseDate: Date(),
+                  voteAverage: 0
+        )
+    }
 }
 
 extension Movie: Then { }

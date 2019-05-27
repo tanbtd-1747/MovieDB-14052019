@@ -143,9 +143,33 @@
                     <view key="view" contentMode="scaleToFill" id="lYi-hQ-HRW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIR-as-vTv">
+                                <rect key="frame" x="20" y="64" width="112" height="45"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v7S-5X-tPl">
+                                <rect key="frame" x="0.0" y="129" width="414" height="733"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KIR-as-vTv" firstAttribute="top" secondItem="LN7-pl-yjz" secondAttribute="top" constant="20" id="1sI-2q-XvD"/>
+                            <constraint firstItem="LN7-pl-yjz" firstAttribute="bottom" secondItem="v7S-5X-tPl" secondAttribute="bottom" id="Ca7-Sp-F5O"/>
+                            <constraint firstItem="KIR-as-vTv" firstAttribute="leading" secondItem="LN7-pl-yjz" secondAttribute="leading" constant="20" id="IPf-Mg-ogi"/>
+                            <constraint firstItem="v7S-5X-tPl" firstAttribute="top" secondItem="KIR-as-vTv" secondAttribute="bottom" constant="20" id="JNG-JC-rYs"/>
+                            <constraint firstItem="v7S-5X-tPl" firstAttribute="leading" secondItem="LN7-pl-yjz" secondAttribute="leading" id="cLh-Nm-WdG"/>
+                            <constraint firstItem="LN7-pl-yjz" firstAttribute="trailing" secondItem="v7S-5X-tPl" secondAttribute="trailing" id="dka-Bb-WTh"/>
+                            <constraint firstItem="KIR-as-vTv" firstAttribute="height" secondItem="lYi-hQ-HRW" secondAttribute="height" multiplier="1/20" id="xTt-7w-Tin"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LN7-pl-yjz"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="v7S-5X-tPl" id="Cvt-kV-rpL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U9a-8N-v9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
