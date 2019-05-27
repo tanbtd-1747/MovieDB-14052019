@@ -93,13 +93,13 @@ final class MoviesViewController: UIViewController, BindableType {
                     return collectionView.dequeueReusableCell(for: indexPath,
                                                               cellType: MovieCollectionViewCell.self)
                         .then {
-                            $0.bindModel(MovieModel(movie: movie))
+                            $0.bindViewModel(MovieViewModel(movie: movie))
                         }
                 case .alternate(let movie):
                     return collectionView.dequeueReusableCell(for: indexPath,
                                                               cellType: AlternateMovieCollectionViewCell.self)
                         .then {
-                            $0.bindModel(MovieModel(movie: movie))
+                            $0.bindViewModel(MovieViewModel(movie: movie))
                         }
                 }
             })

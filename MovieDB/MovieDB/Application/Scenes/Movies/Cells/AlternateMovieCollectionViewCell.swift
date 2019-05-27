@@ -26,19 +26,10 @@ final class AlternateMovieCollectionViewCell: UICollectionViewCell, NibReusable 
         containerView.makeRounded()
     }
     
-    func bindModel(_ model: MovieModel?) {
-        if let model = model {
-            model.do {
-                movieBackdropImageView.sd_setImage(with: $0.backdropURL, completed: nil)
-                movieTitleLabel.text = $0.title
-                movieDateLabel.text = $0.releaseDate
-                movieVoteProgressView.setProgress($0.voteProgress, animated: true)
-            }
-        } else {
-            movieBackdropImageView.image = nil
-            movieTitleLabel.text = ""
-            movieDateLabel.text = ""
-            movieVoteProgressView.setProgress(0, animated: true)
-        }
+    func bindViewModel(_ model: MovieViewModel?) {
+        movieBackdropImageView.sd_setImage(with: model?.backdropURL, completed: nil)
+        movieTitleLabel.text = model?.title ?? ""
+        movieDateLabel.text = model?.releaseDate ?? ""
+        movieVoteProgressView.setProgress(model?.voteProgress ?? 0.0, animated: true)
     }
 }

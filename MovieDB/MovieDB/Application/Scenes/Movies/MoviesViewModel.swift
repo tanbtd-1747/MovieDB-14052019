@@ -57,32 +57,18 @@ extension MoviesViewModel: ViewModelType {
                                              loadTrigger: Driver.merge(loading, refreshing),
                                              items: movieList)
         let toSearch = input.toSearchTrigger
-            .do(onNext: { self.navigator.toSearch()
+            .do(onNext: {
+                self.navigator.toSearch()
             })
         
-        let cells = movieList
-            .map { movies -> [CellType] in
-                var cells = [CellType]()
-                let mainCells = movies.map { CellType.main($0) }
-                let alternateCells = movies.map { CellType.alternate($0) }
-                for i in 0..<mainCells.count {
-                    cells.append(alternateCells[i])
-                    cells.append(mainCells[i])
-                }
-                return cells
-            }
-        
-        let moviesListSection = cells
-            .map {
-                return [Section(items: $0)]
+        let sections = movieList
+            .map { (movies: [Movie]) -> [Section<CellType>] in
+                self.configDataSource(from: movies)
             }
         
         let selectedMovie = input.selectMovieTrigger
-            .withLatestFrom(cells) {
-                return ($0, $1)
-            }
-            .map { indexPath, cells in
-                let cell = cells[indexPath.row]
+            .withLatestFrom(sections) { $1[$0.section].items[$0.row] }
+            .map { cell in
                 switch cell {
                 case .main(let movie):
                     return movie
@@ -101,10 +87,22 @@ extension MoviesViewModel: ViewModelType {
             refreshing: refreshing,
             loadingMore: loadingMore,
             fetchItems: fetchItems,
-            movieList: moviesListSection,
+            movieList: sections,
             selectedMovie: selectedMovie,
             isEmptyData: isEmptyData,
             toSearch: toSearch
         )
+    }
+    
+    private func configDataSource(from movies: [Movie]) -> [Section<CellType>] {
+        let mainCells = movies.map { CellType.main($0) }
+        let alternateCells = movies.map { CellType.alternate($0) }
+        
+        let numMovies = movies.count
+        let cells = mainCells[0..<numMovies / 2] + alternateCells[numMovies / 2..<numMovies]
+        
+        let sections = [Section<CellType>(items: cells.shuffled())]
+        
+        return sections
     }
 }

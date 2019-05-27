@@ -1,5 +1,5 @@
 //
-//  MovieModel.swift
+//  MovieViewModel.swift
 //  MovieDB
 //
 //  Created by pham.van.ducd on 5/17/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct MovieModel: Then {
+struct MovieViewModel: Then {
     let movie: Movie
     
     var title: String {

@@ -47,7 +47,7 @@
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="IJd-iK-dHb" firstAttribute="top" secondItem="lIC-7k-d6F" secondAttribute="bottom" constant="10" id="33O-lM-lD4"/>
-                            <constraint firstItem="lIC-7k-d6F" firstAttribute="leading" secondItem="km2-Nw-Idq" secondAttribute="trailing" constant="237" id="Fnj-6J-CKq"/>
+                            <constraint firstItem="lIC-7k-d6F" firstAttribute="leading" relation="lessThanOrEqual" secondItem="km2-Nw-Idq" secondAttribute="trailing" constant="237" id="Fnj-6J-CKq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IJd-iK-dHb" secondAttribute="trailing" constant="20" id="S6E-Iv-L3u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lIC-7k-d6F" secondAttribute="trailing" constant="20" id="TKW-o8-3PS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IJd-iK-dHb" secondAttribute="bottom" constant="10" id="ZWv-8T-b24"/>

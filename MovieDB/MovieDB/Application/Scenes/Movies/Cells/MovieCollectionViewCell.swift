@@ -28,23 +28,13 @@ final class MovieCollectionViewCell: UICollectionViewCell, NibReusable {
         containerView.makeRounded()
     }
     
-    func bindModel(_ model: MovieModel?) {
-        if let model = model {
-            model.do {
-                moviePosterImageView.sd_setImage(with: $0.posterURL, completed: nil)
-                movieTitleLabel.text = $0.title
-                movieOverviewLabel.text = $0.overview
-                movieVoteLabel.text = $0.vote
-                movieVoteLabel.textColor = $0.voteTextColor
-                movieVoteLabel.isHidden = $0.isVoteHidden
-                movieVoteView.isHidden = $0.isVoteHidden
-            }
-        } else {
-            moviePosterImageView.image = nil
-            movieTitleLabel.text = ""
-            movieOverviewLabel.text = ""
-            movieVoteLabel.isHidden = true
-            movieVoteView.isHidden = true
-        }
+    func bindViewModel(_ model: MovieViewModel?) {
+        moviePosterImageView.sd_setImage(with: model?.posterURL, completed: nil)
+        movieTitleLabel.text = model?.title ?? ""
+        movieOverviewLabel.text = model?.overview ?? ""
+        movieVoteLabel.text = model?.vote ?? ""
+        movieVoteLabel.textColor = model?.voteTextColor ?? .white
+        movieVoteLabel.isHidden = model?.isVoteHidden ?? true
+        movieVoteView.isHidden = model?.isVoteHidden ?? true
     }
 }
